@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  attending_type: MyString
+  attending_id: 1
+  event_id: 1
+  role: MyString
+
+two:
+  attending_type: MyString
+  attending_id: 1
+  event_id: 1
+  role: MyString

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  url: MyString
+  organizer: MyString
+  venue_id: 1
+  event_start_date: 2012-08-09 08:14:36
+  event_end_date: 2012-08-09 08:14:36
+  reg_start_date: 2012-08-09 08:14:36
+  reg_end_date: 2012-08-09 08:14:36
+  reg_url: MyString
+  price: MyString
+  description: MyText
+
+two:
+  name: MyString
+  url: MyString
+  organizer: MyString
+  venue_id: 1
+  event_start_date: 2012-08-09 08:14:36
+  event_end_date: 2012-08-09 08:14:36
+  reg_start_date: 2012-08-09 08:14:36
+  reg_end_date: 2012-08-09 08:14:36
+  reg_url: MyString
+  price: MyString
+  description: MyText
