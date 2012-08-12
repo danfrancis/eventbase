@@ -5,6 +5,7 @@ gem 'pg'
 gem 'heroku'
 gem 'thin'
 gem 'jquery-rails'
+gem 'pg_search'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -4,4 +4,8 @@ class Venue < ActiveRecord::Base
   #Associations
   has_many :events
   
+  #Search
+  include PgSearch
+  multisearchable :against => [:name]
+  
 end

@@ -1,5 +1,10 @@
+require 'csv'
+
 Event.destroy_all
 Venue.destroy_all
+Person.destroy_all
+Sector.destroy_all
+Company.destroy_all
 
 venue = Venue.create!(address: '16 Lower Thames Street London, UK EC3R 6DX', city: 'London', country: 'United Kingdom', name: 'Old Billingsgate')
 
@@ -12,6 +17,15 @@ sectors = ['Internet', 'Technology']
 sectors.each do |sector|
   sector_record = Sector.create!(name: sector)
   Tag.create!(sector_id: sector_record.id, taggable_id: event.id, taggable_type: 'Event')
+end
+CSV.foreach("app/assets/data/person.csv") do |row|
+  #first_name,last_name,person_role,company_name,company_url
+  company = Company.find_or_create_by_url(row[4])
+  company.update_attributes(name: row[3])
+  person = Person.new(name: "#{row[0]} #{row[1]}")
+  person.company = company
+  person.save
+  Attendance.create!(event_id: event.id, role: row[2], attending_id: person.id, attending_type: 'Person')
 end
 
 

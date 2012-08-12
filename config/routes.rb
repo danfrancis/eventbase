@@ -11,5 +11,7 @@ EventBase::Application.routes.draw do
   resources :events
 
   root :to => 'pages#home'
+  
+  post '/search' => 'pages#search'
 
 end

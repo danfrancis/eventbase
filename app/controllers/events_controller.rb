@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
   def index
     @title = "EventBase | Events"
-    @events = Event.includes([:venue]).all
+    @events = Event.includes([:venue, :sectors, :tags]).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:id], include: [:attendances, :people])
 
     respond_to do |format|
       format.html # show.html.erb

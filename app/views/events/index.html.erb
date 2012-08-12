@@ -11,14 +11,14 @@
     <th>Reg url</th>
     <th>Price</th>
     <th>Description</th>
-    <th></th>
+    <th>Sectors</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @events.each do |event| %>
   <tr>
-    <td><%= event.name %></td>
+    <td><%= link_to event.name, event %></td>
     <td><%= event.url %></td>
     <td><%= event.organizer %></td>
     <td><%= link_to event.venue.name, venue_url(event.venue) %></td>
@@ -29,7 +29,7 @@
     <td><%= event.reg_url %></td>
     <td><%= event.price %></td>
     <td><%= event.description %></td>
-    <td><%= link_to 'Show', event %></td>
+    <td><%= print_sectors(event.sectors).html_safe %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

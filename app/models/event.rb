@@ -3,8 +3,17 @@ class Event < ActiveRecord::Base
   
   #Associations
   belongs_to :venue
+  
+  has_many :sectors, through: :tags
+  has_many :tags, as: :taggable
+  
+  has_many :people, through: :attendances, source_type: 'Person', source: :attending
+  has_many :attendances
+
   has_many :companies, through: :attendance, source: :attending, source_type: 'Company'
-  has_many :sectors, through: :tags, source: :taggable, source_type: 'Event'
-  has_many :persons, through: :attendance, source: :attending, source_type: 'Person'
+  
+  #Search
+  include PgSearch
+  multisearchable :against => [:name]
   
 end

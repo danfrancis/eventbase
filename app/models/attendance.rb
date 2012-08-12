@@ -4,4 +4,5 @@ class Attendance < ActiveRecord::Base
   #Associations
   belongs_to :attending, polymorphic: true
   belongs_to :event
+  
 end
