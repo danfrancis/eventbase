@@ -4,6 +4,7 @@ class Person < ActiveRecord::Base
   #Associations
   belongs_to :company
   has_many :events, through: :attendance, source: :attending, source_type: 'Person'
+  has_many :attendances, as: :attending
   
   #Search
   include PgSearch

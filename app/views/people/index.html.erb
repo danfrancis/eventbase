@@ -14,7 +14,11 @@
   <tr>
     <td><%= person.name %></td>
     <td><%= person.title %></td>
-    <td><%= person.company_id %></td>
+    <td>
+      <% if person.company %>
+        <%= link_to person.company.name, company_url(person.company) %>
+      <% end %>
+    </td>
     <td><%= link_to 'Show', person %></td>
     <td><%= link_to 'Edit', edit_person_path(person) %></td>
     <td><%= link_to 'Destroy', person, confirm: 'Are you sure?', method: :delete %></td>

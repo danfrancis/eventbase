@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h1>NEED TO OPTIMIZE QUERY FOR COMPANY NAMES</h1>
-
 <p>
   <b>Name:</b>
   <%= @event.name %>
@@ -66,16 +64,17 @@
       <th>Company Name</th>
     </tr>
     <tbody>
-  <% @event.people.each do |person| %>
+  <% @attendances.each do |attendance| %>
       <tr>
-        <td><%= link_to person.name, person %></td>
-        <td>Role</td>
-        <td><%= link_to person.company.name, person.company %></td>  
+        <td><%= link_to attendance.attending.name, attendance.attending %></td>
+        <td><%= attendance.role %></td>
+        <td>
+          <% if attendance.attending_type == 'Person' %>
+            <%= link_to attendance.attending.company.name, attendance.attending.company %>
+          <% end %>
+        </td>  
       </tr>
   <% end %>
     </tbody>
   </table>
 </p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>

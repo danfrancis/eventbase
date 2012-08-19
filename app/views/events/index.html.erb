@@ -21,7 +21,11 @@
     <td><%= link_to event.name, event %></td>
     <td><%= event.url %></td>
     <td><%= event.organizer %></td>
-    <td><%= link_to event.venue.name, venue_url(event.venue) %></td>
+    <td>
+      <% if event.venue %>
+        <%= link_to event.venue.name, venue_url(event.venue) %>
+      <% end %>
+    </td>
     <td><%= event.event_start_date %></td>
     <td><%= event.event_end_date %></td>
     <td><%= event.reg_start_date %></td>
@@ -35,7 +39,3 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Event', new_event_path %>

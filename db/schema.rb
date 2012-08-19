@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120812191233) do
+ActiveRecord::Schema.define(:version => 20120819160012) do
 
   create_table "attendances", :force => true do |t|
     t.string   "attending_type"
@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(:version => 20120812191233) do
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   create_table "events", :force => true do |t|
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120812191233) do
     t.text     "description"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "perma_name"
   end
 
   create_table "people", :force => true do |t|
@@ -103,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20120812191233) do
     t.string   "long"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "zip_code"
   end
 
 end

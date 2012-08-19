@@ -1,6 +1,6 @@
 <h1>See <%= pluralize(@results.length, 'result') %> for <%= @search_term %></h1>
 <ul>
 <% @results.each do |result| %>
-  <li><%= result.searchable_type %>: <%= link_to result.content, '' %></li>
+  <li><%= result.searchable_type %>: <%= link_to result.content, "/#{result.searchable_type.downcase.pluralize}/#{result.searchable_id}" %></li>
 <% end %>
 </ul>
