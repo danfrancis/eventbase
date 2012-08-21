@@ -17,10 +17,14 @@ CSV.foreach("app/assets/data/event.csv") do |row|
   d_start = row[4].present? ? row[4].split('/') : [8,25,2012]
   d_end = row[5].present? ? row[5].split('/') : [8,25,2012]
   sectors = row[6].present? ? row[6].split(';') : ['TBD']
+  
+  start_date = Date.new(d_start[2].to_i, d_start[0].to_i, d_start[1].to_i)
+  end_date = Date.new(d_end[2].to_i, d_end[0].to_i, d_end[1].to_i)
+  
   venue = Venue.find_or_create_by_name(row[3])
   
   event = Event.create!(perma_name: row[0], name: row[1], description: row[2], venue_id: venue.id,
-                        url: row[7])
+                        url: row[7], event_start_date: start_date, event_end_date: end_date)
 
   sectors.each do |sector|
     sector_record = Sector.find_or_create_by_name(sector.capitalize)

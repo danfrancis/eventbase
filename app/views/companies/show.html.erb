@@ -10,6 +10,11 @@
   <%= link_to @company.url, "" %>
 </p>
 
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<h3>Conferences</h3>
+<ul>
+  <% @company.events.each do |event| %>
+    <li>
+      <%= link_to event.name, event %> | <%= event.event_start_date <= Time.now ? 'Past' : 'Future' %>
+    </li>
+  <% end %>
+</ul>

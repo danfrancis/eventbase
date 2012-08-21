@@ -1,36 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
+<h2>
   <%= @venue.name %>
-</p>
+</h2>
 
 <p>
-  <b>Address:</b>
   <%= @venue.address %>
-</p>
-
-<p>
-  <b>City:</b>
   <%= @venue.city %>
-</p>
-
-<p>
-  <b>State:</b>
   <%= @venue.state %>
-</p>
-
-<p>
-  <b>Country:</b>
   <%= @venue.country %>
 </p>
+<div id="map" style="height: 200px; width: 200px;"></div>
+<%= gmaps4rails(@json) %>
 
-<p>
-  <b>Lat:</b>
-  <%= @venue.lat %>
-</p>
-
-<p>
-  <b>Long:</b>
-  <%= @venue.long %>
-</p>
+<h3>Events</h3>
+<ul>
+  <% @venue.events.each do |event| %>
+    <li><%= link_to event.name, event %></li>
+  <% end %>
+</ul>

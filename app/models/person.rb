@@ -10,4 +10,7 @@ class Person < ActiveRecord::Base
   include PgSearch
   multisearchable :against => [:name]
   
+  #Pagination
+  paginates_per 25
+  
 end

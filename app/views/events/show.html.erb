@@ -1,15 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @event.name %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= @event.url %>
-</p>
-
+<h1>
+  <%= link_to @event.name, "http://#{@event.url}" %>
+</h1>
 <p>
   <b>Organizer:</b>
   <%= @event.organizer %>
@@ -17,7 +10,7 @@
 
 <p>
   <b>Venue:</b>
-  <%= @event.venue_id %>
+  <%= link_to @event.venue.name, @event.venue %>
 </p>
 
 <p>

@@ -13,7 +13,8 @@ class VenuesController < ApplicationController
   # GET /venues/1
   # GET /venues/1.json
   def show
-    @venue = Venue.find(params[:id])
+    @venue = Venue.find(params[:id], include: [:events])
+    @json = @venue.to_gmaps4rails
 
     respond_to do |format|
       format.html # show.html.erb
