@@ -1,2 +1,13 @@
 <h1><%= link_to 'EventBase', root_url %></h1>
-<%= link_to 'Events', events_url %> | <%= link_to 'Companies', companies_url %> | <%= link_to 'People', people_url %>
+<% if true %>
+  <ul>
+    <li><%= link_to 'Settings', '' %></li>
+    <li><%= link_to 'Sign Out', '' %></li>
+  </ul>
+<% else %>
+  <ul>
+    <li><%= link_to 'Pricing', '' %></li>
+    <li><%= link_to 'Sign In', '' %></li>
+    <li><%= link_to 'Sign Up', '' %></li>
+  </ul>
+<% end %>

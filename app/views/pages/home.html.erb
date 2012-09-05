@@ -1,6 +1,4 @@
-<p>Hello world!</p>
-
 <%= form_tag '/search' do %>
-  <%= text_field_tag :search, nil, placeholder: 'Type in a search...' %>
+  <%= text_field_tag :search, nil, placeholder: 'Search for Company or Event Name', class: 'span8' %>
   <%= submit_tag 'Search' %>
 <% end %>
