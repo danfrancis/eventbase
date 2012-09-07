@@ -1,4 +1,7 @@
-<%= form_tag '/search' do %>
-  <%= text_field_tag :search, nil, placeholder: 'Search for Company or Event Name', class: 'span8' %>
-  <%= submit_tag 'Search' %>
-<% end %>
+<div class="home-search span12">
+  <%= form_tag '/search', class: 'form-inline' do %>
+    <i class="icon-search"></i>
+    <%= text_field_tag :search, nil, placeholder: 'Search for Company or Event Name', class: 'span8' %>
+    <%= submit_tag 'Search' %>
+  <% end %>
+</div>

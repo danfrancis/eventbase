@@ -1,13 +1,53 @@
-<h1><%= link_to 'EventBase', root_url %></h1>
-<% if true %>
-  <ul>
-    <li><%= link_to 'Settings', '' %></li>
-    <li><%= link_to 'Sign Out', '' %></li>
-  </ul>
-<% else %>
-  <ul>
-    <li><%= link_to 'Pricing', '' %></li>
-    <li><%= link_to 'Sign In', '' %></li>
-    <li><%= link_to 'Sign Up', '' %></li>
-  </ul>
-<% end %>
+<div class="header span12">
+  <div class="logo">
+    <h1><%= link_to 'EventBase', root_url %></h1>
+  </div>
+  <div class="header-nav">
+    <% if false %>
+      <ul>
+        <li><%= link_to 'Settings', '' %></li>
+        <li><%= link_to 'Sign Out', '' %></li>
+
+      </ul>
+    <% else %>
+      <ul class="nav-signed-out">
+        <li>
+          <div class="btn-group">
+            <a class="btn" href="#">Pricing</a>
+          </div>
+        </li>
+        <li>
+          <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              Sign In
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= text_field_tag :email, nil, placeholder: 'Email' %></li>
+              <li><%= text_field_tag :password, nil, placeholder: 'Password' %></li>
+              <li><%= submit_tag 'Sign In', class: 'btn-primary' %></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              Sign Up
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= text_field_tag :first_name, nil, placeholder: 'First Name' %></li>
+              <li><%= text_field_tag :last_name, nil, placeholder: 'Last Name' %></li>
+              <li><%= text_field_tag :email, nil, placeholder: 'Email' %></li>
+              <li><%= text_field_tag :password, nil, placeholder: 'Password' %></li>
+              <li>
+                <%= check_box_tag :terms %><span> I agree to terms</span>
+                <%= submit_tag 'Create Account', class: 'btn-primary' %>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>
