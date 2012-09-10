@@ -4,7 +4,8 @@ class Company < ActiveRecord::Base
   #Associations
   has_many :people
   has_many :events, through: :attendances
-  has_many :sectors, through: :tags, source: :taggable, source_type: 'Company'
+  has_many :sectors, through: :tags
+  has_many :tags, as: :taggable
   has_many :attendances, as: :attending
   
   #Search
@@ -13,5 +14,10 @@ class Company < ActiveRecord::Base
   
   #Pagination
   paginates_per 25
+  
+  #Instance Methods
+  def sector_names
+    return self.sectors.map { |sector| sector.name }
+  end
   
 end

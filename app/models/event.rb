@@ -19,4 +19,17 @@ class Event < ActiveRecord::Base
   #Scope
   scope :with_a_name, where('name <> ?', "")
   
+  #Instance Methods
+  def city_and_state
+    return "#{self.venue.city}, #{self.venue.state}"
+  end
+  
+  def country
+    return "#{self.venue.country}"
+  end
+  
+  def sector_names
+    return self.sectors.map { |sector| sector.name }
+  end
+  
 end

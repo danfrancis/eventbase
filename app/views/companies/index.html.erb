@@ -1,15 +1,19 @@
-<table>
+<h2>Company Directory</h2>
+<table class="table table-striped">
   <tr>
-    <th>Name</th>
-    <th>Url</th>
+    <th>Company Name</th>
+    <th>Category</th>
+    <th>Add To...</th>
   </tr>
 
 <% @companies.each do |company| %>
   <tr>
     <td><%= link_to company.name, company %></td>
-    <td><%= company.url %></td>
+    <td><%= company.sector_names %></td>
+    <td><%= select_tag :lists, options_for_select([1,2,3]) %></td>
   </tr>
 <% end %>
 </table>
+<p><%= link_to 'Request Coverage of a Company', '', class: 'btn btn-primary' %></p>
 
 <%= paginate @companies %>

@@ -1,41 +1,30 @@
-<table class="table">
+<h2>Event Directory</h2>
+<table class="table table-striped">
   <tr>
-    <th>Name</th>
-    <th>Url</th>
-    <th>Organizer</th>
-    <th>Venue</th>
-    <th>Event start date</th>
-    <th>Event end date</th>
-    <th>Reg start date</th>
-    <th>Reg end date</th>
-    <th>Reg url</th>
-    <th>Price</th>
-    <th>Description</th>
-    <th>Sectors</th>
-    <th></th>
-    <th></th>
+    <th>Event Name</th>
+    <th>Category</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>City/State</th>
+    <th>Country</th>
+    <th>Sponsors/Exhibitors</th>
+    <th>Add To...</th>
   </tr>
 
-<% @events.each do |event| %>
-  <tr>
-    <td><%= link_to event.name, event %></td>
-    <td><%= event.url %></td>
-    <td><%= event.organizer %></td>
-    <td>
-      <% if event.venue %>
-        <%= link_to event.venue.name, venue_url(event.venue) %>
-      <% end %>
-    </td>
-    <td><%= event.event_start_date %></td>
-    <td><%= event.event_end_date %></td>
-    <td><%= event.reg_start_date %></td>
-    <td><%= event.reg_end_date %></td>
-    <td><%= event.reg_url %></td>
-    <td><%= event.price %></td>
-    <td><%= event.description %></td>
-    <td><%= print_sectors(event.sectors).html_safe %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= link_to event.name, event %></td>
+      <td><%= event.sector_names %></td>
+      <td><%= event.event_start_date.strftime('%D') %></td>
+      <td><%= event.event_end_date.strftime('%D') %></td>
+      <td><%= event.city_and_state %></td>
+      <td><%= event.country %></td>
+      <td></td>
+      <td><%= select_tag :lists, options_for_select([1,2,3]) %></tds>
+    </tr>
+  <% end %>
 </table>
+  
+<p><%= link_to 'Request Coverage of an Event', '', class: 'btn btn-primary' %></p>
+
+

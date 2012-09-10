@@ -2,7 +2,8 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.page(params[:page])
+    @title = "EventBase | Companies"
+    @companies = Company.page(params[:page]).includes([:sectors, :tags])
 
     respond_to do |format|
       format.html # index.html.erb
