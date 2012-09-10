@@ -13,5 +13,7 @@ EventBase::Application.routes.draw do
   root :to => 'pages#home'
   
   post '/search' => 'pages#search'
+  
+  get '/dashboard' => 'pages#dashboard', as: :dashboard
 
 end

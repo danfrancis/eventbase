@@ -9,5 +9,9 @@ class PagesController < ApplicationController
     @results = PgSearch.multisearch(params[:search])
   end
   
+  def dashboard
+    @title = 'EventBase | Dashboard'
+  end
+  
   
 end
