@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120819160012) do
+ActiveRecord::Schema.define(:version => 20120910015355) do
 
   create_table "attendances", :force => true do |t|
     t.string   "attending_type"
@@ -91,8 +91,9 @@ ActiveRecord::Schema.define(:version => 20120819160012) do
     t.integer  "sign_in_times"
     t.datetime "last_login"
     t.boolean  "admin"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "password_digest"
   end
 
   create_table "venues", :force => true do |t|

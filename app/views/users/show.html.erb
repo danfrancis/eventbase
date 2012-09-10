@@ -1,25 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Sign in times:</b>
-  <%= @user.sign_in_times %>
-</p>
-
-<p>
-  <b>Last login:</b>
-  <%= @user.last_login %>
-</p>
-
-<p>
-  <b>Admin:</b>
-  <%= @user.admin %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="span12">
+  <ul id="myTab" class="nav nav-tabs">
+    <li class="active"><a href="#account" data-toggle="tab">Account Information</a></li>
+    <li><a href="#companies" data-toggle="tab">Company Lists</a></li>
+    <li><a href="#events" data-toggle="tab">Company Lists</a></li>
+  </ul>
+  <div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="account">
+      <div class="span5">
+        <div class="span5 well">
+          <h3>User Information</h3>
+          <p>
+            <b>Email:</b>
+            <%= @user.email %>
+          </p>
+          <%= link_to 'Edit my profile', edit_user_path(@user) %>
+        </div>
+        <div class="span5 well">
+          <h3>Email Settings</h3>
+            <p>
+              <b>Email:</b>
+              <%= @user.email %>
+            </p>
+            <%= link_to 'Edit my profile', edit_user_path(@user) %>
+          </div>
+        </div>
+      <div class="span5">
+        <div class="span5 well">
+          <h3>Billing Information</h3>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="events">
+      <p>Events show here</p>
+    </div>
+    <div class="tab-pane fade" id="companies">
+      <p>Companies show here</p>
+    </div>
+  </div>
+</div>

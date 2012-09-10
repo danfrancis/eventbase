@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :email, :last_login, :sign_in_times
+  attr_accessible :admin, :email, :last_login, :sign_in_times, :password
   
   #Associations
   has_many :events, through: :tracker, source: :tracking, source_type: 'Event'
@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   has_secure_password
   
   #Validation
-  valdates_presence_of :password, on: :create
+  validates_presence_of :password, on: :create
 
 end
