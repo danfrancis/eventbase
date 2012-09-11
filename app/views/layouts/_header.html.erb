@@ -3,12 +3,23 @@
     <h1><%= link_to 'EventBase', root_url %></h1>
   </div>
   <div class="header-nav">
-    <% if false %>
-      <ul>
-        <li><%= link_to 'Dashboard', dashboard_url %></li>
-        <li><%= link_to 'Settings', '' %></li>
-        <li><%= link_to 'Sign Out', '' %></li>
-
+    <% if true %>
+      <ul class="nav-signed-in">
+        <li>
+          <div class="btn-group">
+            <a class="btn" href="/dashboard">Dashboard</a>
+          </div>
+        </li>
+        <li>
+          <div class="btn-group">
+            <a class="btn" href="#">Settings</a>
+          </div>
+        </li>
+        <li>
+          <div class="btn-group">
+            <a class="btn" href="#">Sign out</a>
+          </div>
+        </li>
       </ul>
     <% else %>
       <ul class="nav-signed-out">
@@ -37,15 +48,7 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><%= text_field_tag :first_name, nil, placeholder: 'First Name' %></li>
-              <li><%= text_field_tag :last_name, nil, placeholder: 'Last Name' %></li>
-              <li><%= text_field_tag :email, nil, placeholder: 'Email' %></li>
-              <li><%= text_field_tag :password, nil, placeholder: 'Password' %></li>
-              <li><%= text_field_tag :password_confirmation, nil, placeholder: 'Password confirmation' %></li>
-              <li>
-                <%= check_box_tag :terms %><span> I agree to terms</span>
-                <%= submit_tag 'Create Account', class: 'btn-primary' %>
-              </li>
+              <%= render 'users/form' %>
             </ul>
           </div>
         </li>

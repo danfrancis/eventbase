@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   
   def home
     @title = "EventBase | Awesomeness"
+    @user = User.new
   end
   
   def search

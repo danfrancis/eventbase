@@ -11,23 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :sign_in_times %><br />
-    <%= f.number_field :sign_in_times %>
-  </div>
-  <div class="field">
-    <%= f.label :last_login %><br />
-    <%= f.datetime_select :last_login %>
-  </div>
-  <div class="field">
-    <%= f.label :admin %><br />
-    <%= f.check_box :admin %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <li><%= f.text_field :first_name, placeholder: 'First Name' %></li>
+  <li><%= f.text_field :last_name, placeholder: 'Last Name' %></li>
+  <li><%= f.email_field :email, placeholder: 'Email' %></li>
+  <li><%= f.text_field :password, placeholder: 'Password' %></li>
+  <li><%= f.text_field :password_confirmation, placeholder: 'Password confirmation' %></li>
+  <li>
+    <%= check_box_tag :terms %><span> I agree to terms</span>
+    <%= f.submit 'Create Account', class: 'btn-primary', id: 'create_account' %>
+  </li>
 <% end %>
+
+<script>
+
+  $(function(){
+    
+    $('#new_user').submit(function(){
+      if ($('#terms:checked').length){
+        return true;
+      }
+      else {
+        return false;
+      }
+    });
+  });
+
+</script>
