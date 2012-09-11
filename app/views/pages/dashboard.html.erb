@@ -45,6 +45,7 @@
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade in active" id="events">
         <p>Events show here</p>
+        <div id="calendar"></div>
       </div>
       <div class="tab-pane fade" id="companies">
         <p>Companies show here</p>
@@ -52,3 +53,14 @@
     </div>
   </div>
 </div>
+
+<script>
+
+  $(function(){
+    $('#calendar').fullCalendar({
+        // your options here
+    });
+  });
+
+
+</script>
