@@ -12,6 +12,8 @@ class PagesController < ApplicationController
   
   def dashboard
     @title = 'EventBase | Dashboard'
+    @events = Event.all
+    @sectors = Sector.all
   end
   
   

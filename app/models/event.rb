@@ -32,4 +32,28 @@ class Event < ActiveRecord::Base
     return self.sectors.map { |sector| sector.name }
   end
   
+  def start_year
+    self.event_start_date.strftime('%Y')
+  end
+  
+  def start_month
+    self.event_start_date.strftime('%-m').to_i - 1
+  end
+  
+  def start_day
+    self.event_start_date.strftime('%e')
+  end
+  
+  def end_year
+    self.event_end_date.strftime('%Y')
+  end
+  
+  def end_month
+    self.event_end_date.strftime('%-m').to_i - 1
+  end
+  
+  def end_day
+    self.event_end_date.strftime('%e')
+  end
+  
 end

@@ -32,7 +32,12 @@
       </div>
       <div id="collapseThree" class="accordion-body collapse">
         <div class="accordion-inner">
-          Anim pariatur cliche...
+          <% @sectors.each do |sector| %>
+            <p>
+              <%= check_box_tag :sector, nil, false, class: 'category_filter', id: "#{sector.name}" %>
+              <span><%= sector.name %></span>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -44,7 +49,7 @@
     </ul>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade in active" id="events">
-        <p>Events show here</p>
+        <span>View range: </span><%= select_tag :date_range, options_for_select(['day', 'week', 'month'], 'month'), class: 'span2' %>
         <div id="calendar"></div>
       </div>
       <div class="tab-pane fade" id="companies">
@@ -56,9 +61,46 @@
 
 <script>
 
+  var events = [
+  <% @events.each do |event| %>
+    <% if event.event_start_date && event.event_end_date %>
+      {
+        id: <%= event.id %>,
+        title: '<%= event.name %>',
+        start: new Date(<%= event.start_year %>, <%= event.start_month %>, <%= event.start_day %>),
+        end: new Date(<%= event.end_year %>, <%= event.end_month %>, <%= event.end_day %>),
+        categories: '<%= event.sector_names %>'
+      }
+    <% if event != @events.last %>,<% end %>
+    <% end %>
+  <% end %>
+  ];
+
+
   $(function(){
     $('#calendar').fullCalendar({
         // your options here
+        defaultView: 'month',
+        events: events
+    });
+    
+    $('#date_range').change(function(){
+      if ($(this).val() == 'day'){  $('#calendar').fullCalendar('changeView', 'basicDay'); }
+      else if ($(this).val() == 'week'){ $('#calendar').fullCalendar('changeView', 'basicWeek'); }
+      else { $('#calendar').fullCalendar('changeView', 'month'); }
+    });
+    
+    $('.category_filter').click(function(){
+      var category = $(this).attr('id');
+      var arr = [];
+      for(var i=0; i < events.length; i++){
+        if(events[i]['categories'].indexOf(category) == -1){
+          arr.push(events[i]['id']);
+        }
+      }
+      for(var i=0; i < arr.length; i++){
+        $('#calendar').fullCalendar( 'removeEvents', arr[i]);
+      }
     });
   });
 
