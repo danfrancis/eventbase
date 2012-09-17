@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @title = "EventBase | MyProfile"
-    @user = User.find(params[:id])
+    @user = current_user
+    @events_tracking = @user.events_tracking
 
     respond_to do |format|
       format.html # show.html.erb

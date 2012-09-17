@@ -18,5 +18,7 @@ EventBase::Application.routes.draw do
   
   post '/sessions' => 'sessions#create', as: :sessions
   delete '/sessions' => 'sessions#destroy'
-
+  
+  post '/trackers' => 'trackers#create', as: :trackers
+  delete '/trackers' => 'trackers#destroy'
 end

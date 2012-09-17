@@ -3,6 +3,8 @@
 <h1>
   <%= link_to @event.name, "http://#{@event.url}" %>
 </h1>
+
+<%= render partial: 'trackers/form', locals: { :tracking_item => @event } %>
 <p>
   <b>Organizer:</b>
   <%= @event.organizer %>

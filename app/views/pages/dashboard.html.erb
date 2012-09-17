@@ -8,7 +8,14 @@
       </div>
       <div id="collapseOne" class="accordion-body collapse in">
         <div class="accordion-inner">
-          Anim pariatur cliche...
+          <p>
+            <%= check_box_tag :list, nil, false, class: 'list_filter', id: "TBD" %>
+            <span>Events</span>
+          </p>
+          <p>
+            <%= check_box_tag :list, nil, false, class: 'list_filter', id: "TBD" %>
+            <span>Companies</span>
+          </p>
         </div>
       </div>
     </div>
@@ -20,7 +27,18 @@
       </div>
       <div id="collapseTwo" class="accordion-body collapse">
         <div class="accordion-inner">
-          Anim pariatur cliche...
+          <p>
+            <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
+            <span>NYC</span>
+          </p>
+          <p>
+            <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
+            <span>London</span>
+          </p>
+          <p>
+            <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
+            <span>San Francisco</span>
+          </p>
         </div>
       </div>
     </div>

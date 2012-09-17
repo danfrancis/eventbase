@@ -1,8 +1,8 @@
 <div class="span12">
   <ul id="myTab" class="nav nav-tabs">
     <li class="active"><a href="#account" data-toggle="tab">Account Information</a></li>
+    <li><a href="#events" data-toggle="tab">Event Lists</a></li>
     <li><a href="#companies" data-toggle="tab">Company Lists</a></li>
-    <li><a href="#events" data-toggle="tab">Company Lists</a></li>
   </ul>
   <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id="account">
@@ -33,7 +33,10 @@
       </div>
     </div>
     <div class="tab-pane fade" id="events">
-      <p>Events show here</p>
+      <p>Here are the events you are tracking:</p>
+      <% @events_tracking.each do |tracker| %>
+        <p><%= link_to tracker.tracking.name, "/#{tracker.tracking_type.downcase.pluralize}/#{tracker.tracking_id}" %></p>
+      <% end %>
     </div>
     <div class="tab-pane fade" id="companies">
       <p>Companies show here</p>
