@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
   
   def companies_tracking
-    
+    self.trackers.map { |t| t if t.tracking_type == 'Company'}
   end
 
 end

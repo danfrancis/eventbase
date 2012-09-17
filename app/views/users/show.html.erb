@@ -34,12 +34,23 @@
     </div>
     <div class="tab-pane fade" id="events">
       <p>Here are the events you are tracking:</p>
-      <% @events_tracking.each do |tracker| %>
-        <p><%= link_to tracker.tracking.name, "/#{tracker.tracking_type.downcase.pluralize}/#{tracker.tracking_id}" %></p>
+      <% if @events_tracking.any? %>
+        <% @events_tracking.each do |tracker| %>
+          <p><%= link_to tracker.tracking.name, "/#{tracker.tracking_type.downcase.pluralize}/#{tracker.tracking_id}" %></p>
+        <% end %>
+      <% else %>
+        <p>You are not tracking anything yet.</p>
       <% end %>
     </div>
     <div class="tab-pane fade" id="companies">
-      <p>Companies show here</p>
+      <p>Here are the companies you are tracking:</p>
+      <% if @companies_tracking.any? %>
+        <% @companies_tracking.each do |tracker| %>
+          <p><%= link_to tracker.tracking.name, "/#{tracker.tracking_type.downcase.pluralize}/#{tracker.tracking_id}" %></p>
+        <% end %>
+      <% else %>
+        <p>You are not tracking anything yet.</p>
+      <% end %>
     </div>
   </div>
 </div>
