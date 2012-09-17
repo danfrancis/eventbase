@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :email, :last_login, :sign_in_times, :password
+  attr_accessible :email, :last_login, :sign_in_times, :first_name, :last_name, :password, :password_confirmation
   
   #Associations
   has_many :events, through: :tracker, source: :tracking, source_type: 'Event'
@@ -11,5 +11,11 @@ class User < ActiveRecord::Base
   
   #Validation
   validates_presence_of :password, on: :create
+  
+  #Instance method
+  
+  def update_last_login
+    self.update_attribute(:last_login, Time.now)
+  end
 
 end

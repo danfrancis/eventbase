@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       session[:last_seen] = Time.now
+      user.update_last_login
       redirect_to dashboard_url
     else
       flash.now.alert = "Sorry, we didn't recognize your Email or Password. Please try again."
