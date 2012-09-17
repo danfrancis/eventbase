@@ -15,5 +15,8 @@ EventBase::Application.routes.draw do
   post '/search' => 'pages#search'
   
   get '/dashboard' => 'pages#dashboard', as: :dashboard
+  
+  post '/sessions' => 'sessions#create', as: :sessions
+  delete '/sessions' => 'sessions#destroy'
 
 end

@@ -14,8 +14,8 @@
   <li><%= f.text_field :first_name, placeholder: 'First Name' %></li>
   <li><%= f.text_field :last_name, placeholder: 'Last Name' %></li>
   <li><%= f.email_field :email, placeholder: 'Email' %></li>
-  <li><%= f.text_field :password, placeholder: 'Password' %></li>
-  <li><%= f.text_field :password_confirmation, placeholder: 'Password confirmation' %></li>
+  <li><%= f.password_field :password, placeholder: 'Password' %></li>
+  <li><%= f.password_field :password_confirmation, placeholder: 'Password confirmation' %></li>
   <li>
     <%= check_box_tag :terms %><span> I agree to terms</span>
     <%= f.submit 'Create Account', class: 'btn-primary', id: 'create_account' %>
