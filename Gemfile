@@ -9,6 +9,7 @@ gem 'pg_search'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'kaminari'
+gem 'exception_notification'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
