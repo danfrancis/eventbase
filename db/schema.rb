@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911025804) do
+ActiveRecord::Schema.define(:version => 20120930203544) do
 
   create_table "attendances", :force => true do |t|
     t.string   "attending_type"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(:version => 20120911025804) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.string   "perma_name"
+  end
+
+  create_table "lists", :force => true do |t|
+    t.string   "name"
+    t.string   "list_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "people", :force => true do |t|
@@ -84,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20120911025804) do
     t.string   "tracking_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "list_id"
   end
 
   create_table "users", :force => true do |t|

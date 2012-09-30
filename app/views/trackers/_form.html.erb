@@ -6,10 +6,11 @@
       <%= submit_tag 'Remove from my list', class: 'btn-warning' %>
     <% end %>
   <% else %>
-    <%= form_tag(trackers_url) do %>
+    <%= form_tag(trackers_url, class: 'form-horizontal') do %>
+      <%= select_tag :list_id, options_from_collection_for_select(@lists, :id, :name), prompt: 'Add event to my lists' %>
       <%= hidden_field_tag :tracking_id, tracking_item.id %>
       <%= hidden_field_tag :tracking_type, tracking_item.class.name %>
-      <%= submit_tag 'Add to my list', class: 'btn-success' %>
+      <%= submit_tag 'Add', class: 'btn-success' %>
     <% end %>
   <% end %>
 <% end %>

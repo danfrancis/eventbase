@@ -1,5 +1,7 @@
 EventBase::Application.routes.draw do
 
+  resources :lists
+
   resources :users
 
   resources :venues
