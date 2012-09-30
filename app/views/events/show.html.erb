@@ -5,6 +5,12 @@
 </h1>
 
 <%= render partial: 'trackers/form', locals: { :tracking_item => @event } %>
+
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
+
 <p>
   <b>Organizer:</b>
   <%= @event.organizer %>
@@ -23,31 +29,6 @@
 <p>
   <b>Event end date:</b>
   <%= @event.event_end_date %>
-</p>
-
-<p>
-  <b>Reg start date:</b>
-  <%= @event.reg_start_date %>
-</p>
-
-<p>
-  <b>Reg end date:</b>
-  <%= @event.reg_end_date %>
-</p>
-
-<p>
-  <b>Reg url:</b>
-  <%= @event.reg_url %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @event.price %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @event.description %>
 </p>
 
 <p>
