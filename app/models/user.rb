@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :persons, through: :tracker, source: :tracking, source_type: 'Person'
   has_many :companies, through: :tracker, source: :tracking, source_type: 'Company'
   has_many :trackers
+  has_many :lists
   
   #Secure sign-on
   has_secure_password

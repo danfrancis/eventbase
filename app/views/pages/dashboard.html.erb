@@ -8,14 +8,13 @@
       </div>
       <div id="collapseOne" class="accordion-body collapse in">
         <div class="accordion-inner">
-          <p>
-            <%= check_box_tag :list, nil, false, class: 'list_filter', id: "TBD" %>
-            <span>Events</span>
-          </p>
-          <p>
-            <%= check_box_tag :list, nil, false, class: 'list_filter', id: "TBD" %>
-            <span>Companies</span>
-          </p>
+          
+          <% @lists.each do |list| %>
+            <p>
+              <%= check_box_tag :list, nil, false, class: 'list_filter', id: "list_#{list.id}" %>
+              <span><%= list.list_type %>: <%= list.name %></span>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -67,7 +66,6 @@
     </ul>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade in active" id="events">
-        <span>View range: </span><%= select_tag :date_range, options_for_select(['day', 'week', 'month'], 'month'), class: 'span2' %>
         <div id="calendar"></div>
       </div>
       <div class="tab-pane fade" id="companies">
@@ -87,7 +85,8 @@
         title: '<%= event.name %>',
         start: new Date(<%= event.start_year %>, <%= event.start_month %>, <%= event.start_day %>),
         end: new Date(<%= event.end_year %>, <%= event.end_month %>, <%= event.end_day %>),
-        categories: '<%= event.sector_names %>'
+        categories: '<%= event.sector_names %>',
+        show: true
       }
     <% if event != @events.last %>,<% end %>
     <% end %>
@@ -98,14 +97,13 @@
   $(function(){
     $('#calendar').fullCalendar({
         // your options here
+        header: {
+  				left: 'prev,next today',
+  				center: 'title',
+  				right: 'month,basicWeek,basicDay'
+  			},
         defaultView: 'month',
         events: events
-    });
-    
-    $('#date_range').change(function(){
-      if ($(this).val() == 'day'){  $('#calendar').fullCalendar('changeView', 'basicDay'); }
-      else if ($(this).val() == 'week'){ $('#calendar').fullCalendar('changeView', 'basicWeek'); }
-      else { $('#calendar').fullCalendar('changeView', 'month'); }
     });
     
     $('.category_filter').click(function(){

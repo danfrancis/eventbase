@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20120930203544) do
   create_table "lists", :force => true do |t|
     t.string   "name"
     t.string   "list_type"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

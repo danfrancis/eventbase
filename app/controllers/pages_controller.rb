@@ -14,6 +14,7 @@ class PagesController < ApplicationController
     @title = 'EventBase | Dashboard'
     @events = Event.all
     @sectors = Sector.all
+    @lists = current_user.lists.includes(:trackers).order('list_type DESC')
   end
   
   
