@@ -1,0 +1,25 @@
+<div class="accordion-heading">
+  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+    Add Events
+  </a>
+</div>
+<div id="collapseTwo" class="accordion-body collapse">
+  <div class="accordion-inner">
+    <%= form_tag '/search', class: 'form-inline' do %>
+      <%= text_field_tag :search, nil, placeholder: 'Enter list name', class: 'span2', id: 'lists' %>
+      <%= submit_tag 'Add' %>
+    <% end %>
+    <p>
+      <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
+      <span>NYC</span>
+    </p>
+    <p>
+      <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
+      <span>London</span>
+    </p>
+    <p>
+      <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
+      <span>San Francisco</span>
+    </p>
+  </div>
+</div>

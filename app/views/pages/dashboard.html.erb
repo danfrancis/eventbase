@@ -1,45 +1,10 @@
 <div class="dashboard">
   <div class="accordion span3" id="accordion2">
     <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-          Filters by List
-        </a>
-      </div>
-      <div id="collapseOne" class="accordion-body collapse in">
-        <div class="accordion-inner">
-          
-          <% @lists.each do |list| %>
-            <p>
-              <%= check_box_tag :list, nil, false, class: 'list_filter', id: "list_#{list.id}" %>
-              <span><%= list.list_type %>: <%= list.name %></span>
-            </p>
-          <% end %>
-        </div>
-      </div>
+      <%= render partial: 'lists', locals: { lists: @lists } %>
     </div>
     <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-          Filters by Location
-        </a>
-      </div>
-      <div id="collapseTwo" class="accordion-body collapse">
-        <div class="accordion-inner">
-          <p>
-            <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
-            <span>NYC</span>
-          </p>
-          <p>
-            <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
-            <span>London</span>
-          </p>
-          <p>
-            <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
-            <span>San Francisco</span>
-          </p>
-        </div>
-      </div>
+      <%= render partial: 'events', locals: {} %>
     </div>
     <div class="accordion-group">
       <div class="accordion-heading">
@@ -77,6 +42,8 @@
 
 <script>
 
+  var lists = ["Fun"];
+  
   var events = [
   <% @events.each do |event| %>
     <% if event.event_start_date && event.event_end_date %>
@@ -92,9 +59,14 @@
     <% end %>
   <% end %>
   ];
+  
+  var arr = [];
 
 
   $(function(){
+    
+    $("#lists").typeahead({ source: lists });
+    
     $('#calendar').fullCalendar({
         // your options here
         header: {
@@ -103,12 +75,15 @@
   				right: 'month,basicWeek,basicDay'
   			},
         defaultView: 'month',
-        events: events
+        events: events,
+        eventClick: function(calEvent, jsEvent, view) {
+          window.location.replace('<%= root_url %>events/'+calEvent.id);
+        }
     });
     
     $('.category_filter').click(function(){
       var category = $(this).attr('id');
-      var arr = [];
+      arr = [];
       for(var i=0; i < events.length; i++){
         if(events[i]['categories'].indexOf(category) == -1){
           arr.push(events[i]['id']);
@@ -117,6 +92,8 @@
       for(var i=0; i < arr.length; i++){
         $('#calendar').fullCalendar( 'removeEvents', arr[i]);
       }
+      $('#calendar').fullCalendar( 'removeEventSource', events );
+      $('#calendar').fullCalendar( 'addEventSource', arr );
     });
   });
 
