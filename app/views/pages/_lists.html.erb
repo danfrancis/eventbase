@@ -5,17 +5,20 @@
 </div>
 <div id="collapseOne" class="accordion-body collapse in">
   <div class="accordion-inner">
-    <%= form_tag '', class: 'form-inline' do %>
-      <%= text_field_tag :search, nil, placeholder: 'Enter list name', class: 'span2', id: 'lists', autocomplete: 'off' %>
-      <%= submit_tag '+' %>
-    <% end %>
-    <% lists.each do |list| %>
+    <%= render partial: 'filter_search', locals: { filterable_type: 'List' } %>
+    <% if filters.for_lists.any? %>
+      <% filters.for_lists.each do |f| %>
+        <p>
+          <%#= check_box_tag :list, nil, false, class: 'list_filter', id: "list_#{list.id}" %>
+          <span><%= f.filterable.list_type.pluralize %>: <%= f.title %> (<%= f.filterable.trackers.length %>)</span>
+          <%= link_to 'X', filter_url(f), method: :delete, confirm: 'Are you sure you want to remove this filter?' %>
+        </p>
+      <% end %>
       <p>
-        <%#= check_box_tag :list, nil, false, class: 'list_filter', id: "list_#{list.id}" %>
-        <span><%= list.list_type.pluralize %>: <%= list.name %> (<%= list.trackers.length %>)</span>
-        <%= link_to 'X', '' %>
+        <%= link_to 'Remove all', remove_all_filters_of_type_url('List'), confirm: 'Are you sure you want to remove all List filters?', method: :delete %>
       </p>
+    <% else %>
+      <p>None selected. Start by typing one in above.</p>
     <% end %>
-    <p><%= link_to 'Remove all', '' %></p>
   </div>
 </div>

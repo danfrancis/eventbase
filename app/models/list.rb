@@ -4,6 +4,7 @@ class List < ActiveRecord::Base
   #Associations
   has_many :trackers
   belongs_to :users
+  has_many :filters, as: :filterable
   
   #Scopes
   scope :by_type, lambda { |type| where("list_type = ?", type)}

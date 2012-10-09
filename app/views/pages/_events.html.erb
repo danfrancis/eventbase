@@ -5,21 +5,20 @@
 </div>
 <div id="collapseTwo" class="accordion-body collapse">
   <div class="accordion-inner">
-    <%= form_tag '/search', class: 'form-inline' do %>
-      <%= text_field_tag :search, nil, placeholder: 'Enter name', class: 'span2', id: 'events', autocomplete: 'off' %>
-      <%= submit_tag '+' %>
+    <%= render partial: 'filter_search', locals: { filterable_type: 'Event' } %>
+    <% if filters.for_events.any? %>
+      <% filters.for_events.each do |f| %>
+        <p>
+          <%#= check_box_tag :list, nil, false, class: 'list_filter', id: "list_#{list.id}" %>
+          <span><%= f.title %></span>
+          <%= link_to 'X', filter_url(f), method: :delete, confirm: 'Are you sure you want to remove this filter?' %>
+        </p>
+      <% end %>
+      <p>
+        <%= link_to 'Remove all', remove_all_filters_of_type_url('Event'), confirm: 'Are you sure you want to remove all Event filters?', method: :delete %>
+      </p>
+    <% else %>
+      <p>None selected. Start by typing one in above.</p>
     <% end %>
-    <p>
-      <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
-      <span>NYC</span>
-    </p>
-    <p>
-      <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
-      <span>London</span>
-    </p>
-    <p>
-      <%= check_box_tag :location, nil, false, class: 'location_filter', id: "TBD" %>
-      <span>San Francisco</span>
-    </p>
   </div>
 </div>

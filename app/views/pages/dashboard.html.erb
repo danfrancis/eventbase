@@ -2,18 +2,18 @@
   <div class="accordion span3" id="accordion2">
     <h3>Filter my results by:</h3>
     <div class="accordion-group">
-      <%= render partial: 'lists', locals: { lists: @lists } %>
+      <%= render partial: 'lists', locals: { filters: @filters } %>
     </div>
     <div class="accordion-group">
-      <%= render partial: 'events', locals: {} %>
+      <%= render partial: 'events', locals: { filters: @filters } %>
     </div>
     <div class="accordion-group">
-      <%= render partial: 'sectors', locals: {} %>
+      <%= render partial: 'sectors', locals: { filters: @filters } %>
     </div>
     <div class="accordion-group">
-      <%= render partial: 'locations', locals: {} %>
+      <%= render partial: 'locations', locals: { filters: @filters } %>
     </div>
-    <%= link_to 'Reset my filters', '', confirm: 'Are you sure you want to clear all your filters?' %>
+    <%= link_to 'Reset my filters', remove_all_filters_url, confirm: 'Are you sure you want to clear all your filters?', method: :delete %>
   </div>
   <div class="dashboard-results span8">
     <ul id="myTab" class="nav nav-tabs">
@@ -97,10 +97,6 @@
       sessionStorage.removeItem('filters')
     } 
   };
-
-
-
-
 
   $(function(){
     

@@ -41,10 +41,11 @@ class FiltersController < ApplicationController
   # POST /filters.json
   def create
     @filter = Filter.new(params[:filter])
+    @filter.user = current_user
 
     respond_to do |format|
       if @filter.save
-        format.html { redirect_to @filter, notice: 'Filter was successfully created.' }
+        format.html { redirect_to :back, notice: 'Filter was successfully created.' }
         format.json { render json: @filter, status: :created, location: @filter }
       else
         format.html { render action: "new" }
@@ -76,8 +77,20 @@ class FiltersController < ApplicationController
     @filter.destroy
 
     respond_to do |format|
-      format.html { redirect_to filters_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
+  end
+  
+  def remove
+    filters = Filter.by_user_and_type(current_user.id, params[:type])
+    filters.destroy_all
+    redirect_to :back
+  end
+  
+  def remove_all
+    filters = current_user.filters
+    filters.destroy_all
+    redirect_to :back
   end
 end

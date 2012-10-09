@@ -5,15 +5,23 @@
 </div>
 <div id="collapseThree" class="accordion-body collapse">
   <div class="accordion-inner">
-    <%= form_tag '/search', class: 'form-inline' do %>
-      <%= text_field_tag :search, nil, placeholder: 'Enter name', class: 'span2', id: 'sectors', autocomplete: 'off' %>
-      <%= submit_tag '+' %>
-    <% end %>
-    <% @sectors.each do |sector| %>
+    <%= render partial: 'filter_search', locals: { filterable_type: 'Sector' } %>
+    <% if filters.for_sectors.any? %>
+      <% filters.for_sectors.each do |f| %>
+        <p>
+          <%#= check_box_tag :list, nil, false, class: 'list_filter', id: "list_#{list.id}" %>
+          <span><%= f.title %></span>
+          <%= link_to 'X', filter_url(f), method: :delete, confirm: 'Are you sure you want to remove this filter?' %>
+        </p>
+      <% end %>
       <p>
-        <%= check_box_tag :sector, nil, false, class: 'category_filter', id: "#{sector.name}" %>
-        <span><%= sector.name %></span>
+        <%= link_to 'Remove all', remove_all_filters_of_type_url('Sector'), confirm: 'Are you sure you want to remove all Sector filters?', method: :delete %>
       </p>
+    <% else %>
+      <p>None selected. Start by typing one in above.</p>
     <% end %>
+
+    <%#= check_box_tag :sector, nil, false, class: 'category_filter', id: "#{sector.name}" %>
+
   </div>
 </div>
