@@ -1,0 +1,19 @@
+<div class="accordion-heading">
+  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+    Sectors
+  </a>
+</div>
+<div id="collapseThree" class="accordion-body collapse">
+  <div class="accordion-inner">
+    <%= form_tag '/search', class: 'form-inline' do %>
+      <%= text_field_tag :search, nil, placeholder: 'Enter name', class: 'span2', id: 'sectors', autocomplete: 'off' %>
+      <%= submit_tag '+' %>
+    <% end %>
+    <% @sectors.each do |sector| %>
+      <p>
+        <%= check_box_tag :sector, nil, false, class: 'category_filter', id: "#{sector.name}" %>
+        <span><%= sector.name %></span>
+      </p>
+    <% end %>
+  </div>
+</div>

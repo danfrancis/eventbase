@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @filter.title %>
+</p>
+
+<p>
+  <b>Filterable type:</b>
+  <%= @filter.filterable_type %>
+</p>
+
+<p>
+  <b>Filterable:</b>
+  <%= @filter.filterable_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @filter.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_filter_path(@filter) %> |
+<%= link_to 'Back', filters_path %>

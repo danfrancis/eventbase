@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120930203544) do
+ActiveRecord::Schema.define(:version => 20121009015917) do
 
   create_table "attendances", :force => true do |t|
     t.string   "attending_type"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(:version => 20120930203544) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.string   "perma_name"
+  end
+
+  create_table "filters", :force => true do |t|
+    t.string   "title"
+    t.string   "filterable_type"
+    t.integer  "filterable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "lists", :force => true do |t|

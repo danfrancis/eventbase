@@ -1,5 +1,6 @@
 <div class="dashboard">
   <div class="accordion span3" id="accordion2">
+    <h3>Filter my results by:</h3>
     <div class="accordion-group">
       <%= render partial: 'lists', locals: { lists: @lists } %>
     </div>
@@ -7,22 +8,12 @@
       <%= render partial: 'events', locals: {} %>
     </div>
     <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-          Filters by Category
-        </a>
-      </div>
-      <div id="collapseThree" class="accordion-body collapse">
-        <div class="accordion-inner">
-          <% @sectors.each do |sector| %>
-            <p>
-              <%= check_box_tag :sector, nil, false, class: 'category_filter', id: "#{sector.name}" %>
-              <span><%= sector.name %></span>
-            </p>
-          <% end %>
-        </div>
-      </div>
+      <%= render partial: 'sectors', locals: {} %>
     </div>
+    <div class="accordion-group">
+      <%= render partial: 'locations', locals: {} %>
+    </div>
+    <%= link_to 'Reset my filters', '', confirm: 'Are you sure you want to clear all your filters?' %>
   </div>
   <div class="dashboard-results span8">
     <ul id="myTab" class="nav nav-tabs">
@@ -42,8 +33,20 @@
 
 <script>
 
-  var lists = ["Fun"];
+  var lists = [
+  <% @lists.each do |list| %>
+    '<%= list.name %>'
+    <% if list != @lists.last %>,<% end %>
+  <% end %>
+  ];
   
+  var sectors = [
+  <% @sectors.each do |sector| %>
+    '<%= sector.name %>'
+    <% if sector != @sectors.last %>,<% end %>
+  <% end %>
+  ];
+
   var events = [
   <% @events.each do |event| %>
     <% if event.event_start_date && event.event_end_date %>
@@ -59,14 +62,53 @@
     <% end %>
   <% end %>
   ];
+  var events_list = [];
+  for(var i=0; i < events.length; i++){
+    events_list.push(events[i]['title']);
+  }
   
   var arr = [];
+  
+  var locations = ['Chicago, IL'];
+  
+  var Filter = {
+    init: function(){
+      filters = this.getCurrentFilters();
+      console.log(filters);
+    },
+    getCurrentFilters: function(){
+      if (sessionStorage.getItem('filters') != null){
+        return sessionStorage.getItem('filters');
+      }
+      else {
+        return []
+      }
+    },
+    addFilter: function(id, title, type){
+      var filter = {
+        id: id,
+        title: title,
+        type: type
+      };
+      filters.push(filter);
+      sessionStorage.setItem('filters', filters);
+    },
+    resetAllFilters: function(){
+      sessionStorage.removeItem('filters')
+    } 
+  };
+
+
+
 
 
   $(function(){
     
     $("#lists").typeahead({ source: lists });
-    
+    $("#events").typeahead({ source: events_list });
+    $("#sectors").typeahead({ source: sectors });
+    $("#locations").typeahead({ source: locations });
+
     $('#calendar').fullCalendar({
         // your options here
         header: {
@@ -78,6 +120,10 @@
         events: events,
         eventClick: function(calEvent, jsEvent, view) {
           window.location.replace('<%= root_url %>events/'+calEvent.id);
+        },
+        dayClick: function(date, allDay, jsEvent, view){
+          $('#calendar').fullCalendar('changeView', 'basicDay');
+          $('#calendar').fullCalendar('gotoDate', date);
         }
     });
     

@@ -1,5 +1,7 @@
 EventBase::Application.routes.draw do
 
+  resources :filters
+
   resources :lists
 
   resources :users

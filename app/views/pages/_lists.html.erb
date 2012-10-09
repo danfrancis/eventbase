@@ -1,13 +1,13 @@
 <div class="accordion-heading">
   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-    Add Lists
+    My Lists
   </a>
 </div>
 <div id="collapseOne" class="accordion-body collapse in">
   <div class="accordion-inner">
-    <%= form_tag '/search', class: 'form-inline' do %>
-      <%= text_field_tag :search, nil, placeholder: 'Enter list name', class: 'span2', id: 'lists' %>
-      <%= submit_tag 'Add' %>
+    <%= form_tag '', class: 'form-inline' do %>
+      <%= text_field_tag :search, nil, placeholder: 'Enter list name', class: 'span2', id: 'lists', autocomplete: 'off' %>
+      <%= submit_tag '+' %>
     <% end %>
     <% lists.each do |list| %>
       <p>
@@ -19,13 +19,3 @@
     <p><%= link_to 'Remove all', '' %></p>
   </div>
 </div>
-
-<script>
-
-  $(function(){
-    var lists_tracking = [1,2,3];
-    sessionStorage.setItem('lists', lists_tracking)
-    console.log(sessionStorage.getItem('lists'));
-  });
-
-</script>
