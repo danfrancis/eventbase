@@ -48,24 +48,26 @@
   ];
 
   var events = [
-  <% @events.each do |event| %>
+  <% @filtered_events.each do |event| %>
     <% if event.event_start_date && event.event_end_date %>
       {
         id: <%= event.id %>,
-        title: '<%= event.name %>',
+        title: '<%= event.name %> (<%= event.companies.length %>)',
         start: new Date(<%= event.start_year %>, <%= event.start_month %>, <%= event.start_day %>),
         end: new Date(<%= event.end_year %>, <%= event.end_month %>, <%= event.end_day %>),
         categories: '<%= event.sector_names %>',
         show: true
       }
-    <% if event != @events.last %>,<% end %>
+    <% if event != @filtered_events.last %>,<% end %>
     <% end %>
   <% end %>
   ];
-  var events_list = [];
-  for(var i=0; i < events.length; i++){
-    events_list.push(events[i]['title']);
-  }
+  var events_list = [
+  <% @events.each do |event| %>
+    '<%= event.name %>'
+    <% if event != @events.last %>,<% end %>
+  <% end %>
+  ];
   
   var arr = [];
   

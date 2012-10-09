@@ -5,6 +5,7 @@ class List < ActiveRecord::Base
   has_many :trackers
   belongs_to :users
   has_many :filters, as: :filterable
+  has_many :events, through: :trackers, source_type: 'Event', source: :tracking
   
   #Scopes
   scope :by_type, lambda { |type| where("list_type = ?", type)}

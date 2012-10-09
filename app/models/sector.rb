@@ -3,5 +3,6 @@ class Sector < ActiveRecord::Base
   
   #Associations
   has_many :tags
+  has_many :events, through: :tags, source_type: 'Event', source: :taggable
   
 end
