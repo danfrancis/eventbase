@@ -20,7 +20,9 @@
       <td><%= event.city_and_state %></td>
       <td><%= event.country %></td>
       <td></td>
-      <td><%= select_tag :lists, options_for_select([1,2,3]) %></tds>
+      <td>
+        <%= render partial: 'trackers/form', locals: { :tracking_item => event, :lists => @lists } %>
+      </td>
     </tr>
   <% end %>
 </table>

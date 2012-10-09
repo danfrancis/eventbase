@@ -7,7 +7,7 @@
     <% end %>
   <% else %>
     <%= form_tag(trackers_url, class: 'form-horizontal') do %>
-      <%= select_tag :list_id, options_from_collection_for_select(@lists, :id, :name), prompt: 'Add event to my lists' %>
+      <%= select_tag :list_id, options_from_collection_for_select(lists, :id, :name), prompt: 'Add to my lists' %>
       <%= hidden_field_tag :tracking_id, tracking_item.id %>
       <%= hidden_field_tag :tracking_type, tracking_item.class.name %>
       <%= submit_tag 'Add', class: 'btn-success' %>

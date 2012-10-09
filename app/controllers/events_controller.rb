@@ -2,6 +2,7 @@ class EventsController < ApplicationController
 
   def index
     @title = "EventBase | Events"
+    @lists = List.by_type("Event")
     @events = Event.includes([:venue, :sectors, :tags]).with_a_name
 
     respond_to do |format|

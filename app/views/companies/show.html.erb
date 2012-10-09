@@ -10,7 +10,7 @@
   <%= link_to @company.url, "" %>
 </p>
 
-<%= render partial: 'trackers/form', locals: { :tracking_item => @company } %>
+<%= render partial: 'trackers/form', locals: { :tracking_item => @company, lists: @lists } %>
 
 <h3>Conferences</h3>
 <ul>

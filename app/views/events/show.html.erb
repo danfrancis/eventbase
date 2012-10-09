@@ -4,8 +4,7 @@
   <%= link_to @event.name, "http://#{@event.url}" %>
 </h1>
 
-<%= render partial: 'trackers/form', locals: { :tracking_item => @event } %>
-
+<%= render partial: 'trackers/form', locals: { :tracking_item => @event, lists: @lists } %>
 <p>
   <b>Description:</b>
   <%= @event.description %>

@@ -1,7 +1,7 @@
 class TrackersController < ApplicationController
   
   def create
-    params[:tracker] = { user_id: current_user.id, tracking_type: params[:tracking_type], tracking_id: params[:tracking_id] }
+    params[:tracker] = { list_id: params[:list_id], user_id: current_user.id, tracking_type: params[:tracking_type], tracking_id: params[:tracking_id] }
     tracker = Tracker.new(params[:tracker])
     tracker.save!
     redirect_to :back
