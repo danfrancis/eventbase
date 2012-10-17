@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :last_login, :sign_in_times, :first_name, :last_name, :password, :password_confirmation
   
   #Associations
-  has_many :events, through: :tracker, source: :tracking, source_type: 'Event'
-  has_many :persons, through: :tracker, source: :tracking, source_type: 'Person'
-  has_many :companies, through: :tracker, source: :tracking, source_type: 'Company'
+  has_many :events, through: :trackers, source: :tracking, source_type: 'Event'
+  has_many :persons, through: :trackers, source: :tracking, source_type: 'Person'
+  has_many :companies, through: :trackers, source: :tracking, source_type: 'Company'
   has_many :trackers
   has_many :lists
   has_many :filters
@@ -26,12 +26,17 @@ class User < ActiveRecord::Base
     return tracking.any?
   end
   
+  def tracking_list(tracking_item)
+    tracking = Tracker.where("user_id = ? AND tracking_id = ? AND tracking_type = ?", self.id, tracking_item.id, tracking_item.class.name)
+    return tracking.first.list
+  end
+  
   def events_tracking
-    self.trackers.map { |t| t if t.tracking_type == 'Event'}
+    self.events
   end
   
   def companies_tracking
-    self.trackers.map { |t| t if t.tracking_type == 'Company'}
+    self.companies
   end
 
 end

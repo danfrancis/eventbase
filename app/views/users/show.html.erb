@@ -36,8 +36,8 @@
       <p>Here are the events you are tracking:</p>
       <% if @events_tracking.any? %>
       <div class="well">
-        <% @events_tracking.each do |tracker| %>
-          <p><%= link_to tracker.tracking.name, "/#{tracker.tracking_type.downcase.pluralize}/#{tracker.tracking_id}" %></p>
+        <% @events_tracking.each do |event| %>
+          <p><%= link_to event.name, event %></p>
         <% end %>
       </div>
       <% else %>
@@ -50,8 +50,8 @@
       <p>Here are the companies you are tracking:</p>
       <% if @companies_tracking.any? %>
       <div class="well">
-        <% @companies_tracking.each do |tracker| %>
-          <p><%= link_to tracker.tracking.name, "/#{tracker.tracking_type.downcase.pluralize}/#{tracker.tracking_id}" %></p>
+        <% @companies_tracking.each do |company| %>
+          <p><%= link_to company.name, company %></p>
         <% end %>
       </div>
       <% else %>

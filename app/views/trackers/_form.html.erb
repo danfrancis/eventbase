@@ -1,10 +1,12 @@
 <% if current_user %>
   <% if current_user.tracking?(tracking_item) %>
+    <p>Current List: <%= current_user.tracking_list(tracking_item).name %>
     <%= form_tag(trackers_url, method: :delete) do %>
       <%= hidden_field_tag :tracking_id, tracking_item.id %>
       <%= hidden_field_tag :tracking_type, tracking_item.class.name %>
       <%= submit_tag 'Remove from my list', class: 'btn-warning' %>
     <% end %>
+    </p>
   <% else %>
     <%= form_tag(trackers_url, class: 'form-horizontal') do %>
       <%= select_tag :list_id, options_from_collection_for_select(lists, :id, :name), prompt: 'Add to my lists' %>
