@@ -1,7 +1,24 @@
 <div class="home-search span12">
   <%= form_tag '/search', class: 'form-inline' do %>
     <i class="icon-search"></i>
-    <%= text_field_tag :search, nil, placeholder: 'Search for Company or Event Name', class: 'span8' %>
+    <%= text_field_tag :search, nil, placeholder: 'Search for Company or Event Name', class: 'span8', id: 'search', autocomplete: 'off' %>
     <%= submit_tag 'Search' %>
   <% end %>
 </div>
+
+<script>
+
+  var companies_and_events = [
+  <% @companies_and_events.each do |item| %>
+    '<%= j(item.name) %>'
+    <% if item != @companies_and_events.last %>,<% end %>
+  <% end %>
+  ];
+
+  $(function(){
+    
+    $("#search").typeahead({ source: companies_and_events });
+    
+  });
+
+</script>
