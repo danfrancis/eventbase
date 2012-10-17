@@ -16,18 +16,7 @@
     <%= link_to 'Reset my filters', remove_all_filters_url, confirm: 'Are you sure you want to clear all your filters?', method: :delete %>
   </div>
   <div class="dashboard-results span8">
-    <ul id="myTab" class="nav nav-tabs">
-      <li class="active"><a href="#events" data-toggle="tab">Events</a></li>
-      <li><a href="#companies" data-toggle="tab">Companies</a></li>
-    </ul>
-    <div id="myTabContent" class="tab-content">
-      <div class="tab-pane fade in active" id="events">
-        <div id="calendar"></div>
-      </div>
-      <div class="tab-pane fade" id="companies">
-        <p>Companies show here</p>
-      </div>
-    </div>
+    <div id="calendar"></div>
   </div>
 </div>
 
