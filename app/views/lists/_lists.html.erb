@@ -1,0 +1,10 @@
+<p>Here are your <%= type %> lists:</p>
+<% if lists.by_type(type).any? %>
+<div class="well">
+  <% lists.by_type(type).each do |list| %>
+    <p><%= link_to list.name, "" %></p>
+  <% end %>
+</div>
+<% else %>
+  <p class="well">You do not have any <%= type %> lists yet.</p>
+<% end %>

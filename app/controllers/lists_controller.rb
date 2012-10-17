@@ -40,11 +40,12 @@ class ListsController < ApplicationController
   # POST /lists
   # POST /lists.json
   def create
+    params[:list][:user_id] = current_user.id
     @list = List.new(params[:list])
 
     respond_to do |format|
       if @list.save
-        format.html { redirect_to @list, notice: 'List was successfully created.' }
+        format.html { redirect_to :back, notice: 'List was successfully created.' }
         format.json { render json: @list, status: :created, location: @list }
       else
         format.html { render action: "new" }

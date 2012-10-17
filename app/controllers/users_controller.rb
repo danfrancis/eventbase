@@ -17,6 +17,8 @@ class UsersController < ApplicationController
     @user = current_user
     @events_tracking = @user.events_tracking
     @companies_tracking = @user.companies_tracking
+    @list = List.new
+    @lists = current_user.lists
 
     respond_to do |format|
       format.html # show.html.erb

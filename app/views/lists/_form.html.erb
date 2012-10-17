@@ -1,4 +1,5 @@
-<%= form_for(@list) do |f| %>
+<p>Create a new <%= type %> list</p>
+<%= form_for(@list, html: { class: "form-horizontal" }) do |f| %>
   <% if @list.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
@@ -11,15 +12,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :list_type %><br />
-    <%= f.text_field :list_type %>
-  </div>
-  <div class="actions">
+    <%= f.text_field :name, placeholder: 'List name...' %>
+
+
+    <%= f.hidden_field :list_type, value: type %>
+
     <%= f.submit %>
-  </div>
 <% end %>
