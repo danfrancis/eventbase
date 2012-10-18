@@ -19,7 +19,11 @@ class PagesController < ApplicationController
     @sectors = Sector.all
     @lists = current_user.lists.includes(:trackers).order('list_type DESC')
     @filters = current_user.filters.includes(:filterable)
-    @filtered_events = get_filtered_events(@filters)
+    if @filters.any?
+      @filtered_events = get_filtered_events(@filters)
+    else
+      @filtered_events = @events
+    end
   end
   
   private
