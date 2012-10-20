@@ -16,7 +16,7 @@
 <ul>
   <% @company.events.each do |event| %>
     <li>
-      <%= link_to event.name, event %> | <%= event.event_start_date <= Time.now ? 'Past' : 'Future' %>
+      <%= link_to event.name, event %> | <%= event.event_start_date.present? && event.event_start_date <= Time.now ? 'Past' : 'Future' %>
     </li>
   <% end %>
 </ul>

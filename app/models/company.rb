@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-  attr_accessible :name, :url, :description
+  attr_accessible :name, :url, :description, :company_perma, :zipcode, :country, :fb_perma, :tw_perma
   
   #Associations
   has_many :people

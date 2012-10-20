@@ -1,10 +1,176 @@
-Old Billingsgate,16 Lower Thames Street,London,,EC3R 6DX,United Kingdom
-Javits Center,655 West 34th Street,New York,NY,10001,United States
-Mandalay Bay Convention Center,3950 Las Vegas Blvd. South,Las Vegas,NV,89119,United States
-Moscone Center,747 Howard Street,San Francisco,CA,94103,United States
-Venetian Sands Expo Center,201 Sands Avenue,Las Vegas,NV,89169,United States
-Four Seasons Hotel San Francisco,757 Market Street,San Francisco,CA,94103,United States
-Los Angeles Convention Center,1201 South Figueroa Street,Los Angeles,CA,90015,United States
-Orange County Convention Center,9990 International Drive,Orlando,FL,32819,United States
-Busan Exhibition and Convention Center (BEXCO),,Busan,,,Korea
-Koelnmesse ,Messeplatz 1,Cologne,,50679,Germany
+Amsterdam RAI,Europaplein 22,Amsterdam,,1078 GZ,NL
+Anaheim Convention Center,800 West Katella Avenue,Anaheim,CA,92802,US
+Anaheim Marriott,700 West Convention Way,Anaheim,CA,92802,US
+Ars Electronica Center,Ars-Electronica-Straße 1 ,Linz,,4040,AT
+Austin Convention Center,500 E. Cesar Chavez Street,Austin,TX,78701,US
+Baltimore Convention Center,1 West Pratt Street,Baltimore,MD,21201,US
+Berlin ExpoCenter Airport,Messestraße 1,Berlin,,12529,DE
+Boston Convention and Exhibition Center,415 Summer Street,Boston,MA,2210,US
+Burlington Hotel ,Upper Leeson Street,Dublin,,4,IL
+Busan Exhibition and Convention Center (BEXCO),43 APEC-ro,Busan,,612-704,KR
+Caesars Palace,3570 Las Vegas Boulevard South,Las Vegas,NV,89109,US
+Cape Town Convention Centre,1 Lower Long Street,Cape Town,,8001,SA
+China International Exhibition Center (CIEC),"No. 6, Bei-San-Huan East Road",Beijing,,,CN
+Cipriani Wall Street,55 Wall Street,New York,NY,10005,US
+Cobo Center,West Jefferson Avenue,Detroit,MI,48226,US
+Colorado Convention Center,700 14th Street,Denver,CO,80202,US
+Congress Center Basel,Messeplatz 1,Basle,,4058,CH
+Congress Center Hamburg,Am Dammtor / Marseiller Str.,Hamburg,,20355,DE
+Congress Frankfurt,Ludwig-Erhard-Anlage 1,Frankfurt am Main,,60327,DE
+Crowne Plaza Hotel,1605 Broadway,New York,NY,10019,US
+Crowne Plaza Tequendama Bogota,Carrera 10,Bogotá,,,CO
+DigiPen Institute of Technology,9931 Willows Road Northeast,Redmond,WA,98052,US
+Donald E Stephens Convention Center,5555 N. River Road,Rosemont,IL,60018,US
+Dubai International Convention and Exhibition Centre,Sheikh Zayed Road,Dubai,,,AE
+Earls Court 2,Warwick Road,London,,SW5 9TA,UK
+Earls Court Exhibition Centre,Warwick Road,London,,SW5 9TA,UK
+École de Technologie Supérieure,1100 rue Notre-Dame Ouest,Montréal,QC,H3C 1K3,CA
+Eko Hotel & Suite,Victoria Island,Lagos,,,NG
+Ernest N. Morial Convention Center ,900 Convention Center Blvd.,New Orleans,LA,70130,US
+Eurosites Les Docks,50 Avenue du President Wilson,Paris,,93200,FR
+Exhibition Centre Nuremberg,Messezentrum,Nürnberg,,90471,DE
+Feria de Madrid,Av del Partenón,Madrid,,28042,ES
+Fira Barcelona Gran Via,Avenida de la Reina Maria Cristina,Barcelona,,,ES
+Fira Gran Via,"Av. Joan Carles I, 64 ",Barcelona,,'08908,ES
+Fontana di Trevi Conference Centre,Piazza della Pilotta 4 ,Rome,,'00187,IT
+Four Seasons Chicago,120 East Delaware Place,Chicago,IL,60611,US
+Four Seasons Hotel Boston,200 Boylston Street,Boston,MA,2116,US
+Four Seasons Hotel San Francisco,757 Market Street,San Francisco,CA,94103,US
+Frontier Airlines Center,400 W. Wisconsin Ave.,Milwaukee,WI,53203,US
+Gaylord Opryland Resort and Convention Center,2800 Opryland Drive,Nashville,TN,37214,US
+Gaylord Palms Convention Center,6000 W Osceola Pkwy,Kissimmee,FL,34746,US
+Gaylord Palms Hotel & Convention Center,6000 West Osceola Parkway,Kissimmee,FL,34746,US
+Gaylord Texan Hotel and Conference Center,1501 Gaylord Trail,Grapevine,TX,76051,US
+George R. Brown Convention Center,1001 Avenida De Las Americas,Houston,TX,77010,US
+Grand Hyatt Mumbai,Western Express Highway,Mumbai,,400055,IN
+Grand Hyatt New York,109 East 42nd Street ,New York,NY,10017,US
+Halle Freyssinet (La),55 Boulevard Vincent Auriol,Paris,,75013,FR
+Hanover Exhibition Center ,Messegelände,Hanover,,30521,DE
+Hilton Anatole,2201 North Stemmons Freeway,Dallas,TX,75207,US
+Hilton Irvine,18800 MacArthur Boulevard,Irvine,CA,92612,US
+Hilton London Metropole,225 Edgware Road,London,,W2 1JU,UK
+Hilton New York,1335 6th Avenue,New York,NY,10019,US
+Hilton San Diego Bayfront,1 Park Boulevard,San Diego,CA,92101,US
+Hilton San Francisco,333 O'Farrell Street,San Francisco,CA,94102,US
+Hilton San Francisco Union Square,333 O'Farrell Street,San Francisco,CA,94102,US
+Hollywood and Highland Center,6801 Hollywood Blvd,Hollywood,CA,90028,US
+Hong Kong Convention & Exhibition Centre,1 Harbour Road,Wan Chai,Hong Kong,,CH
+Hotel Fira Palace,"Avda Rius I Taulet, 1-3",Barcelona,,'08004,ES
+Hotel Palomar,5300 E. Mockingbird Lane,Dallas,TX,75206,US
+Hyatt Regency Century Plaza,2025 Avenue of the Stars,Los Angeles,CA,90067,US
+Hyatt Regency Chicago,151 E. Wacker Dr,Chicago,IL,60601,US
+Hyatt Regency Denver Tech Center,7800 East Tufts Ave.,Denver,CO,80237,US
+Hyatt Regency Grand Cypress,One Grand Cypress Blvd.,Orlando,FL,32836,US
+Hyatt Regency O'Hare,9300 Bryn Mawr Avenue,Rosemont,IL,60018,US
+Hyatt Regency San Francisco,5 Embarcadero Center,San Francisco,CA,94105,US
+Hyatt Regency Santa Clara,5101 Great America Parkway,Santa Clara,CA,95054,US
+Hyatt Regency Scottsdale Resort,7500 East Doubletree Ranch Road,Scottsdale,AZ,85258,US
+Hynes Convention Center,900 Boylston Street,Boston,MA,2115,US
+Indiana Convention Center,100 South Capitol Avenue,Indianapolis,IN,46225,US
+Inmarsat Conference Center,99 City Road,London,,EC1Y 1AX,UK
+InterContinental Boston,510 Atlantic Avenue,Boston,MA,2210,US
+InterContinental Hotel ,"8, Beichen West Road, Chaoyang District",Beijing,,100105,CH
+INTEX centre,１丁目-５-１０２Nankokita,Suminoe Ward,Osaka Prefecture,559-0034,JP
+Irvine Hyatt Regency,17900 Jamboree Road,Irvine,CA,92614,US
+Jacob K. Javits Convention Center,655 West 34th Street,New York,NY,10001,US
+JW Marriot Marquis,Sheikh Zayed Road,Dubai,,121000,AE
+Kerry Hotel,No.1388 Hua Mu Road,Pudong,Shanghai,201204,CN
+Koelnmesse,Messeplatz 1,Cologne,,50679,DE
+Koelnmesse ,Messeplatz 1,Cologne,,50679,DE
+KTPO Trade Center,Plot No. 121,Bengaluru,Bangalore,,IN
+Landesmesse Stuttgart ,Messepiazza 1,Stuttgart,,D-70629,DE
+Las Vegas Convention Center,3150 Paradise Road,Las Vegas,NV,89109,US
+Las Vegas Hotel & Casino,3000 Paradise Road,Las Vegas,NV,89109,US
+Le Bourget,Le Bourget Airport,Paris,,93350,FR
+Le Parker Meridien,119 West 56th Street,New York,NY,10019,US
+Long Beach Convention Center,300 East Ocean Boulevard,Long Beach,CA,90802,US
+Los Angeles Convention Center,1201 South Figueroa Street,Los Angeles,CA,90015,US
+Makuhari Messe ,2-1 Nakase,Mihama-ku,Chiba-city,261-0023,JP
+Manchester Grand Hyatt,1 Market Place,San Diego,CA,92101,US
+Mandalay Bay Convention Center,3950 Las Vegas Blvd. South,Las Vegas,NV,89119,US
+Mandalay Bay Resort & Casino,3950 Las Vegas Blvd. South,Las Vegas,NV,89119,US
+Mandarin Oriental,80 Columbus Circle,New York,NY,10023,US
+Marina Bay Sands,10 Bayfront Avenue,,,18956,SG
+McCormick Place,2301 S. Lake Shore Drive,Chicago,IL,60616,US
+McGraw Hill Building,330 West 42nd Street,New York,NY,10036,US
+Meliá Jardim Europa,"Rua Joao Cachoeira, 107",Sao Paulo,,04535-010,BR
+Messe Berlin,Wundtstr. 72,Berlin,,14057,DE
+Messe Dresden,Messering 6,Dresden,,1067,DE
+Messe Düsseldorf,Stockumer Kirchstraße 61,Düsseldorf,,40474,DE
+Messe Frankfurt Venue,Ludwig-Erhard-Anlage 1,Franfurt,,D-60327,DE
+Messe Munchen,Messegelände,Munich,,81823,DE
+Miami Beach Convention Center,901 Convention Center Drive,Miami Beach,FL,33139,US
+Microsoft Campus,1 Microsoft Way,Redmond,WA,98052,US
+Minneapolis Convention Center,1301 Second Avenue South,Minneapolis,MN,55403,US
+Minneapolis Convention Center,1301 Second Avenue South,Minneapolis,MN,55403,US
+Mission Bay Conference Center ,1675 Owens Street,San Francisco,CA,94158,US
+MIT Media Lab,75 Amherst Street,Cambridge,MA,2139,US
+Moscone Center,747 Howard Street,San Francisco,CA,94103,US
+Moscone Center,747 Howard Street,San Francisco,CA,94103,US
+"National Hall, Olympia",Hammersmith Road,London,,W14 8UX,UK
+Navy Pier,600 East Grand Avenue,Chicago,IL,60611,US
+New Orleans Morial Convention Center,900 Convention Center Boulevard,New Orleans,LA,70130,US
+Old Billingsgate,16 Lower Thames Street,London,,EC3R 6DX,UK
+Olympia Conference Centre,Hammersmith Road,London,,W14 8UX,UK
+Omni San Franciso Hotel,500 California Street,San Francisco,CA,94104,US
+Omni Shoreham Hotel,2500 Calvert Street Northwest,Washington,DC,20008,US
+Orange County Convention Center,9990 International Drive,Orlando,FL,32819,US
+Oslo Kongressenter,Youngs gate 11,Oslo,,181,NO
+Pacifico Yokohama,１-１ Minatomirai,Yokohama,Kanagawa Prefecture,220-0012,JP
+Palais des Festivals,Place de la Gare,Cannes,,'06400,FR
+Paris Nord Villepinte Exhibition Centre,95970 ROISSY CDG CEDEX,Paris,,68004,FR
+Pasadena Convention Center,300 East Green Street,Pasadena,CA,91101,US
+Peabody Orlando,9801 International Drive,Orlando,FL,32819,US
+Pennsylvania Convention Center,1101 Arch Street,Philadelphia,PA,19107,US
+Phoenix Convention Center,100 North 3rd Street,Phoenix,AZ,85004,US
+Prague Congress Centre,"třída 5. května 65, 140 21 Prague 4",Prague,,,CZ
+Radio City Music Hall,1260 6th Avenue,New York,NY,10020,US
+Radisson Blu Hotel,Lough Atalia Road,Galway,,,IL
+Renaissance Orlando Hotel at SeaWorld,6677 Sea Harbor Drive,Orlando,FL,32821,US
+Renaissance Washington,999 Ninth Street NW ,Washington,DC,20001,US
+Ronald Reagan Building and International Trade Center,1300 Pennsylvania Avenue NW,Washington,DC,20004,US
+Rosen Shingle Creek,9939 Universal Blvd,Orlando,FL,32819,US
+Salt Palace Convention Center,100 SW Temple,Salt Lake City,UT,84010,US
+San Diego Convention Center,111 West Harbor Drive,San Diego,CA,92101,US
+San Jose McEnery Convention Center ,150 West San Carlos St.,San Jose,CA,95113,US
+Sands Expo & Convention Center,201 E. Sands Ave. ,Las Vegas,NV,89109,US
+Santa Clara Convention Center,5001 Great America Parkway,Santa Clara,CA,95054,US
+Santa Clara Convention Center,5001 Great America Pkwy,Santa Clara,CA,95054,US
+Sentry Centers,730 3rd Avenue,New York,NY,10017,US
+Shanghai International Convention Center,No.2727Riverside Avenue,Shanghai,,,CN
+Sheraton Hotel & Marina,1380 Harbor Island Drive,San Diego,CA,92101,US
+Sheraton New York Hotel & Towers,811 7th Ave,New York,NY,10019,US
+Singapore Expo,1 Expo Dr,Singapore,,486150,SG
+Singapore Marriott Hotel,320 Orchard Road,Singapore,,238865,SG
+Sonnenalp Resort of Vail,20 Vail Road,Vail,CO,81657,US
+Square Brussels Meeting Centre,Rue Ravensteinstraat 2,Brussels,,1000,BE
+Talking Stick Resort,9800 East Indian Bend,Scottsdale,AZ,85256,US
+Tel Aviv Stock Exchange Visitors Center,,Tel Aviv,,,IL
+The Address Hotel,Dubai Marina,Dubai,,,AE
+The Concourse at San Francisco Design Center,635 8th Street,San Francisco,CA,94107,US
+The Grand Hyatt Kauai Resort and Spa,1571 Poipu Road,Kauai,HI,96756,US
+The Hilton San Diego Resort & Spa,1775 East Mission Bay Drive,San Diego,CA,92109,US
+The Metropolitan Pavilion,125 West 18th Street ,New York,NY,10011,US
+The Mirage,3400 South Las Vegas Boulevard,Las Vegas,NV,89109,US
+The New York Palace,455 Madison Avenue,New York,NY,10022,US
+The Palace Hotel,2 New Montgomery Street,San Francisco,CA,94105,US
+"The Ritz-Carlton, Marina del Rey Hotel",4375 Admiralty Way,Marina del Rey,CA,90292,US
+The W Hotel San Francisco,181 Third Street ,San Francisco,CA,94103,US
+The Westin Grand München,Arabellastrasse 6,Munich,,81925,DE
+The Westin Kierland Resort & Spa,6902 East Greenway Parkway,Scottsdale,AZ,85254,US
+The Westin St. Francis,335 Powell Street,San Francisco,CA,94102,US
+The Westin Times Square,270 West 43rd Street ,New York,NY,10036,US
+Thistle Marble Arch,55 Bryanston Street,London,,W1H 7EH,UK
+Thistle Marble Arch Hotel,Bryanston Street,London,,W1H 7EH,UK
+Times Center,242 West 41st Street,New York,NY,10036,US
+Tokyo Big Sight (Tokyo International Exhibition Center),"3-21-1 Ariake, Koto-ku",Tokyo,,135-0063,JP
+Tokyo International Forum,東京都千代田区丸の内３丁目５−１,Tokyo,,100-0005,JP
+Venetian Resort Hotel and Casino,3355 Las Vegas Blvd. South,Las Vegas,NV,89109,US
+Waldorf-Astoria Hotel,301 Park Avenue,New York,NY,10022,US
+Walt Disney World resorts,,Orlando,FL,,US
+Walter E. Washington Convention Center,801 Mt Vernon Place NW ,Washington,DC,20001,US
+Westin Boston Waterfront,425 Summer Street,Boston,MA,2210,US
+Westin Diplomat Resort & Spa,3555 South Ocean Drive,Hollywood,FL,22019,US
+Westin Harbour Castle Hotel,1 Harbour Square,Toronto,ON,M5J1A6,CA
+Wigwam Golf Resort & Spa,300 East Wigwam Blvd.,Litchfield Park,AZ,85340,US
+Yokohama Royal Park Hotel,2-2-1-3 Minato Mirai,Nishi-ku,Yokohama,220-8173,JP
