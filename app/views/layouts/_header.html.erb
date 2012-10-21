@@ -5,6 +5,17 @@
   <div class="header-nav">
     <% if current_user %>
       <ul class="nav-signed-in">
+        <% if !action_name.include?('home') %>
+          <li>
+            <div class="btn-group">
+              <%= render partial: 'pages/search', locals: { width: 'span3' } %>
+            </div>
+          </li>
+          <li>
+            <div class="btn-group span1">
+            </div>
+          </li>
+        <% end %>
         <li>
           <div class="btn-group">
             <a class="btn" href="/dashboard">Dashboard</a>
