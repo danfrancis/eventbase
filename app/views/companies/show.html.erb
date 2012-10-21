@@ -1,13 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @company.name %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= link_to @company.url, "" %>
+  <b><%= link_to @company.name, "http://#{@company.url}" %></b>
 </p>
 
 <%= render partial: 'trackers/form', locals: { :tracking_item => @company, lists: @lists } %>
