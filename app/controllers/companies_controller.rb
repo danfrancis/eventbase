@@ -4,7 +4,7 @@ class CompaniesController < ApplicationController
   def index
     @title = "EventBase | Companies"
     @companies = Company.page(params[:page]).includes([:sectors, :tags])
-    @lists = List.by_type('Company')
+    @lists = current_user.lists.by_type('Company')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +16,7 @@ class CompaniesController < ApplicationController
   # GET /companies/1.json
   def show
     @company = Company.find(params[:id], include: [:events])
-    @lists = List.by_type('Company')
+    @lists = current_user.lists.by_type('Company')
     
     respond_to do |format|
       format.html # show.html.erb

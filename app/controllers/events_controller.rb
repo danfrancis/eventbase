@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 
   def index
     @title = "EventBase | Events"
-    @lists = List.by_type("Event")
+    @lists = current_user.lists.by_type("Event")
     @events = Event.includes([:venue, :sectors, :tags]).with_a_name
 
     respond_to do |format|
@@ -15,7 +15,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @title = "EventBase | Event"
-    @lists = List.by_type("Event")
+    @lists = current_user.lists.by_type("Event")
     @event = Event.find(params[:id], include: [:attendances])
     @attendances = Attendance.includes([:attending]).where(event_id: @event.id)
     respond_to do |format|

@@ -30,7 +30,7 @@
         </li>
         <li>
           <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <a id="sign_in" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               Sign In
               <span class="caret"></span>
             </a>
@@ -45,7 +45,7 @@
         </li>
         <li>
           <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <a id="sign_up" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               Sign Up
               <span class="caret"></span>
             </a>
@@ -64,6 +64,13 @@
   $(function(){
     $('.dropdown-menu').click(function(e) {
         e.stopPropagation();
+    });
+    
+    $('#sign_up').live('click', function(){
+      $('#user_first_name').focus();
+    });
+    $('#sign_in').live('click', function(){
+      $('#email').focus();
     });
   });
 
