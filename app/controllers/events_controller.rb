@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   def index
     @title = "EventBase | Events"
     @lists = current_user.lists.by_type("Event")
-    @events = Event.includes([:venue, :sectors, :tags]).with_a_name
+    @events = Event.includes([:venue, :sectors, :tags, :attendances]).with_a_name
 
     respond_to do |format|
       format.html # index.html.erb

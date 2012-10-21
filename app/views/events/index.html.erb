@@ -19,7 +19,7 @@
       <td><%= event.event_end_date.strftime('%D') %></td>
       <td><%= event.city_and_state %></td>
       <td><%= event.country %></td>
-      <td></td>
+      <td><%= event.attendances.length %></td>
       <td>
         <%= render partial: 'trackers/form', locals: { :tracking_item => event, :lists => @lists } %>
       </td>
