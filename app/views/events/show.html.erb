@@ -31,23 +31,17 @@
 </p>
 
 <p>
-  <b>People Attending: </b>
+  <b>Companies Attending: </b>
   <table class="table">
     <tr>
-      <th>Name</th>
-      <th>Role</th>
       <th>Company Name</th>
+      <th>Role</th>
     </tr>
     <tbody>
   <% @attendances.each do |attendance| %>
       <tr>
         <td><%= link_to attendance.attending.name, attendance.attending %></td>
         <td><%= attendance.role %></td>
-        <td>
-          <% if attendance.attending_type == 'Person' %>
-            <%= link_to attendance.attending.company.name, attendance.attending.company %>
-          <% end %>
-        </td>  
       </tr>
   <% end %>
     </tbody>

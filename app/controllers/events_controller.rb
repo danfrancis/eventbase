@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   def show
     @title = "EventBase | Event"
     @lists = current_user.lists.by_type("Event")
-    @event = Event.find(params[:id], include: [:attendances])
+    @event = Event.find(params[:id], include: [:companies])
     @attendances = Attendance.includes([:attending]).where(event_id: @event.id)
     respond_to do |format|
       format.html # show.html.erb
