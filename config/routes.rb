@@ -9,6 +9,7 @@ EventBase::Application.routes.draw do
   resources :venues
 
   resources :companies
+  get '/companies_scroll' => 'companies#scroll', as: :companies_scroll
 
   resources :people
 

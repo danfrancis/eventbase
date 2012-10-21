@@ -1,21 +1,30 @@
 <h2>Company Directory</h2>
-<table class="table table-striped">
+<table class="company_list_container table table-striped">
   <tr>
     <th>Company Name</th>
     <th>Category</th>
     <th>Add To...</th>
   </tr>
-
-<% @companies.each do |company| %>
-  <tr>
-    <td><%= link_to company.name, company %></td>
-    <td><%= company.sector_names %></td>
-    <td>
-      <%= render partial: 'trackers/form', locals: { :tracking_item => company, :lists => @lists } %>
-    </td>
-  </tr>
-<% end %>
+  <%= render partial: 'list', locals: { :companies => @companies, :lists => @lists, :page => @page } %>
 </table>
+<p>Loading... <%= image_tag 'loading-icon.gif' %></p>
 <p><%= link_to 'Request Coverage of a Company', '', class: 'btn btn-primary' %></p>
 
-<%= paginate @companies %>
+<script>
+
+  var flag = false;
+  var page = 1;
+
+  $(function(){
+    $(window).scroll(function(){
+      var scroll = $(window).height() + $(document).scrollTop();
+      if ($(document).height() == scroll && flag == false){
+        $.get('<%= j(companies_scroll_url) %>', { page: page}, function(){
+          flag = false;
+        },'script');
+        flag = true;
+      }
+    });
+  });
+
+</script>

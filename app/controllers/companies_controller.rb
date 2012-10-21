@@ -3,7 +3,8 @@ class CompaniesController < ApplicationController
   # GET /companies.json
   def index
     @title = "EventBase | Companies"
-    @companies = Company.page(params[:page]).includes([:sectors, :tags])
+    @page = 1
+    @companies = Company.page(@page).includes([:sectors, :tags])
     @lists = current_user.lists.by_type('Company')
 
     respond_to do |format|
@@ -82,5 +83,12 @@ class CompaniesController < ApplicationController
       format.html { redirect_to companies_url }
       format.json { head :no_content }
     end
+  end
+  
+  def scroll
+    page = params[:page]
+    @companies = Company.page(page).includes([:sectors, :tags])
+    @lists = current_user.lists.by_type('Company')
+    @page = page.to_i + 1
   end
 end
