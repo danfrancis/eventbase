@@ -35,7 +35,11 @@ CSV.foreach("app/assets/data/event.csv") do |row|
   
   # Don't create event if name is blank
   if row[1].present?
-    event_perma_name = row[1].gsub(' ','_').downcase
+    if row[0].present?
+      event_perma_name = row[0]
+    else
+      event_perma_name = row[1].gsub(' ','_').downcase
+    end
   
     event = Event.create!(perma_name: event_perma_name, name: row[1], description: row[2], venue_id: venue.id,
                           url: row[7], event_start_date: start_date, event_end_date: end_date)
