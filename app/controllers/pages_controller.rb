@@ -11,6 +11,9 @@ class PagesController < ApplicationController
   def search
     @search_term = params[:search]
     @results = PgSearch.multisearch(params[:search])
+    if @results.length == 1
+      redirect_to "/#{@results.first.searchable_type.downcase.pluralize}/#{@results.first.searchable_id}"
+    end
   end
   
   def dashboard
