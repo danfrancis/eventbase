@@ -41,7 +41,7 @@
     <% if event.event_start_date && event.event_end_date %>
       {
         id: <%= event.id %>,
-        title: '<%= j(event.name) %> (<%= event.companies.length %>)',
+        title: '<%= j(event.name) %> (<%= event.companies.length %>)'.replace('&amp;', '&'),
         start: new Date(<%= event.start_year %>, <%= event.start_month %>, <%= event.start_day %>),
         end: new Date(<%= event.end_year %>, <%= event.end_month %>, <%= event.end_day %>),
         categories: '<%= event.sector_names %>',
