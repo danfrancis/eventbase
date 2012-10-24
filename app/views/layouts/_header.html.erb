@@ -73,16 +73,14 @@
 <script>
 
   $(function(){
-    $('.dropdown-menu').click(function(e) {
-        e.stopPropagation();
-    });
-    
-    $('#sign_up').live('click', function(){
-      $('#user_first_name').focus();
-    });
-    $('#sign_in').live('click', function(){
-      $('#email').focus();
-    });
+    var companies_and_events = [
+    <% @companies_and_events.each do |item| %>
+      '<%= j(item.name) %>'
+      <% if item != @companies_and_events.last %>,<% end %>
+    <% end %>
+    ];
+
+    $("#search").typeahead({ source: companies_and_events });
   });
 
 </script>

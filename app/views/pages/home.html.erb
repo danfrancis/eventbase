@@ -2,19 +2,3 @@
   <%= render partial: 'search', locals: { width: 'span8' } %>
 </div>
 
-<script>
-
-  var companies_and_events = [
-  <% @companies_and_events.each do |item| %>
-    '<%= j(item.name) %>'
-    <% if item != @companies_and_events.last %>,<% end %>
-  <% end %>
-  ];
-
-  $(function(){
-    
-    $("#search").typeahead({ source: companies_and_events });
-    
-  });
-
-</script>
