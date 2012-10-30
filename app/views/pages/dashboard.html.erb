@@ -111,7 +111,8 @@
         dayClick: function(date, allDay, jsEvent, view){
           $('#calendar').fullCalendar('changeView', 'basicDay');
           $('#calendar').fullCalendar('gotoDate', date);
-        }
+        },
+        limitEvents: 5
     });
     
     $('.category_filter').click(function(){
