@@ -82,6 +82,14 @@
 
     $("#search").typeahead({ source: companies_and_events });
     
+    $('#sign_in').on('click', function(){
+      setTimeout('$("#email").focus()', 300);
+    });
+    
+    $('#sign_up').on('click', function(){
+      setTimeout('$("#user_first_name").focus()', 300);
+    });
+    
   });
 
 </script>

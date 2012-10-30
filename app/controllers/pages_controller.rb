@@ -33,8 +33,12 @@ class PagesController < ApplicationController
       filters.each do |f|
         if f.filterable.class.name == "Event"
           events.push(f.filterable)
-        else
-          events.concat(f.filterable.events)
+        elsif f.filterable.class.name == "List"
+          if f.filterable.list_type == "Company"
+            f.filterable.companies.map { |c| events.concat(c.events) }
+          else
+            events.concat(f.filterable.events)
+          end
         end
       end
       return events
