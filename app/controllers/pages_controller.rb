@@ -41,7 +41,7 @@ class PagesController < ApplicationController
           end
         end
       end
-      return events
+      return events.uniq!
     end
   
   

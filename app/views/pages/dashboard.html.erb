@@ -47,7 +47,7 @@
         categories: '<%#= event.sector_names %>',
         show: true
       }
-    <% if event != @filtered_events.last %>,<% end %>
+    <% if event != @filtered_events.length %>,<% end %>
     <% end %>
   <% end %>
   ];
