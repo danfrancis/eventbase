@@ -27,10 +27,10 @@ CSV.foreach("app/assets/data/event.csv") do |row|
   else
     sectors = ['TBD']
   end
-  
+
   start_date = Date.new(d_start[2].to_i, d_start[0].to_i, d_start[1].to_i)
   end_date = Date.new(d_end[2].to_i, d_end[0].to_i, d_end[1].to_i)
-  
+
   venue = Venue.find_or_create_by_name(row[3])
   
   # Don't create event if name is blank
