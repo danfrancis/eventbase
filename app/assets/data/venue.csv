@@ -1,3 +1,4 @@
+venue_name,venue_street,venue_city,venue_state,venue_zipcode,venue_country
 Amsterdam RAI,Europaplein 22,Amsterdam,,1078 GZ,NL
 Anaheim Convention Center,800 West Katella Avenue,Anaheim,CA,92802,US
 Anaheim Marriott,700 West Convention Way,Anaheim,CA,92802,US
@@ -174,3 +175,4 @@ Westin Diplomat Resort & Spa,3555 South Ocean Drive,Hollywood,FL,22019,US
 Westin Harbour Castle Hotel,1 Harbour Square,Toronto,ON,M5J1A6,CA
 Wigwam Golf Resort & Spa,300 East Wigwam Blvd.,Litchfield Park,AZ,85340,US
 Yokohama Royal Park Hotel,2-2-1-3 Minato Mirai,Nishi-ku,Yokohama,220-8173,JP
+Paris Expo - Porte de Versaille,1 Place Porte de Versailles,Paris,,75015,FR
