@@ -2,7 +2,7 @@
 <% if lists.by_type(type).any? %>
 <div class="well">
   <% lists.by_type(type).each do |list| %>
-    <p><%= link_to list.name, "" %></p>
+    <p><%= link_to list.name, "" %> ( <%= link_to 'Edit', edit_list_url(list) %> | <%= link_to 'Delete', list_url(list), method: :delete, confirm: 'Are you sure you want to remove this list?' %> )</p>
   <% end %>
 </div>
 <% else %>

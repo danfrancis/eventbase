@@ -61,7 +61,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.update_attributes(params[:list])
-        format.html { redirect_to @list, notice: 'List was successfully updated.' }
+        format.html { redirect_to current_user, notice: 'List was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -77,7 +77,7 @@ class ListsController < ApplicationController
     @list.destroy
 
     respond_to do |format|
-      format.html { redirect_to lists_url }
+      format.html { redirect_to current_user }
       format.json { head :no_content }
     end
   end

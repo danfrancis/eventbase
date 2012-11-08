@@ -1,4 +1,6 @@
-<p>Create a new <%= type %> list</p>
+<% if action_name.include?('new') %>
+  <p>Create a new <%= type %> list</p>
+<% end %>
 <%= form_for(@list, html: { class: "form-horizontal" }) do |f| %>
   <% if @list.errors.any? %>
     <div id="error_explanation">
