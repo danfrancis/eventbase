@@ -28,4 +28,8 @@ class Venue < ActiveRecord::Base
     true
   end
   
+  def self.locations
+    self.all.map { |v| "#{v.city}"}.uniq
+  end
+  
 end

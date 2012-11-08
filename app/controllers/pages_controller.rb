@@ -19,6 +19,7 @@ class PagesController < ApplicationController
     @sectors = Sector.all
     @lists = current_user.lists.includes(:trackers).order('list_type DESC')
     @filters = current_user.filters.includes(:filterable)
+    @locations = Venue.locations
     if @filters.any?
       @filtered_events = get_filtered_events(@filters)
     else
@@ -31,7 +32,9 @@ class PagesController < ApplicationController
     def get_filtered_events(filters)
       events = Array.new()
       filters.each do |f|
-        if f.filterable.class.name == "Event"
+        if f.filterable_type == 'Location'
+          #Placeholder logic goes here
+        elsif f.filterable.class.name == "Event"
           events.push(f.filterable)
         elsif f.filterable.class.name == "List"
           if f.filterable.list_type == "Company"

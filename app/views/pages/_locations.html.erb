@@ -5,9 +5,6 @@
 </div>
 <div id="collapseFour" class="accordion-body collapse">
   <div class="accordion-inner">
-    <%= form_tag '/search', class: 'form-inline' do %>
-      <%= text_field_tag :search, nil, placeholder: 'Enter location', class: 'span2', id: 'locations', autocomplete: 'off' %>
-      <%= submit_tag '+' %>
-    <% end %>
+    <%= render partial: 'filter_search', locals: { filterable_type: 'Location' } %>
   </div>
 </div>

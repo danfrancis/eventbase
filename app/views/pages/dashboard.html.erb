@@ -60,7 +60,12 @@
   
   var arr = [];
   
-  var locations = ['Chicago, IL'];
+  var locations = [
+  <% @locations.each do |location| %>
+    '<%= j(location) %>'
+    <% if location != @locations.last %>,<% end %>
+  <% end %>
+  ];
   
   var Filter = {
     init: function(){
