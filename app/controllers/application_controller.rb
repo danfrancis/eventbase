@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   
   before_filter :get_current_companies_and_events
   
+  http_basic_authenticate_with :name => ENV['http_username'], :password => ENV['http_password']
+    
   def current_user
     if session[:user_id]
       User.find(session[:user_id])
