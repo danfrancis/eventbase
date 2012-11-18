@@ -1,9 +1,9 @@
 EventBase::Application.configure do
   
-  config.middleware.use ExceptionNotifier,
-    :email_prefix => "Error in EventBase",
-    :sender_address => %{"notifier" <notifier@example.com>},
-    :exception_recipients => %w{'bhennes2@gmail.com' 'launchcafe@gmail.com'}
+  # config.middleware.use ExceptionNotifier,
+  #   :email_prefix => "Error in EventBase",
+  #   :sender_address => %{"notifier" <notifier@example.com>},
+  #   :exception_recipients => %w{'bhennes2@gmail.com' 'launchcafe@gmail.com'}
   
   # Settings specified here will take precedence over those in config/application.rb
 

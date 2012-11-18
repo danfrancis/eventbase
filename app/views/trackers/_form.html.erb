@@ -9,10 +9,25 @@
     </p>
   <% else %>
     <%= form_tag(trackers_url, class: 'form-horizontal') do %>
-      <%= select_tag :list_id, options_from_collection_for_select(lists, :id, :name), prompt: 'Add to my lists' %>
+      <div class="btn-group">
+        <a id="sign_in" class="btn dropdown-toggle span2" data-toggle="dropdown" href="#">
+          Add to my lists
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu trackers_list">
+          <li><label for="list"><%= check_box_tag :list, :name %> List</label></li>
+          <li><label for="list"><%= check_box_tag :list, :name %> List</label></li>
+          <li><label for="list"><%= check_box_tag :list, :name %> List</label></li>
+          <li><label for="list"><%= check_box_tag :list, :name %> List</label></li>
+          <li><label for="list"><%= check_box_tag :list, :name %> List</label></li>
+          <li><%= text_field_tag :list, nil, class: 'span2', placeholder: 'New name...' %></li>
+          <li><%= submit_tag 'Add', class: 'btn-success' %></li>
+        </ul>
+      </div>
+      <%#= select_tag :list_id, options_from_collection_for_select(lists, :id, :name), prompt: 'Add to my lists' %>
       <%= hidden_field_tag :tracking_id, tracking_item.id %>
       <%= hidden_field_tag :tracking_type, tracking_item.class.name %>
-      <%= submit_tag 'Add', class: 'btn-success' %>
+      
     <% end %>
   <% end %>
 <% end %>
