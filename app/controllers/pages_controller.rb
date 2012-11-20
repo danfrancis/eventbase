@@ -25,6 +25,7 @@ class PagesController < ApplicationController
     else
       @filtered_events = @events
     end
+    @companies = @filtered_events.map { |e| e.companies }.flatten.uniq[0..5]
   end
   
   private

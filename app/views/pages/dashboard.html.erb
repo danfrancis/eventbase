@@ -17,6 +17,16 @@
   </div>
   <div class="dashboard-results span8">
     <div id="calendar"></div>
+    <div id="company_details">
+      <table class="company_list_container table table-striped">
+        <tr>
+          <th>Company Name</th>
+          <th>Category</th>
+          <th>Add To...</th>
+        </tr>
+        <%= render partial: 'companies/list', locals: { :companies => @companies, :lists => @lists, :page => @page } %>
+      </table>
+    </div>
   </div>
 </div>
 
