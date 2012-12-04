@@ -16,11 +16,28 @@
             </div>
           </li>
         <% end %>
-        <li>
-          <div class="btn-group">
-            <a class="btn" href="/dashboard">Dashboard</a>
-          </div>
-        </li>
+        <% if @lists.any? %>
+          <li>
+            <div class="btn-group">
+              <a id="sign_in" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                Calendar
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <% if @lists.by_type('Event').any? %>
+                  <li><%= link_to 'Events', '' %></li>
+                <% else %>
+                  <li>No 'Event' lists yet.</li>
+                <% end %>
+                <% if @lists.by_type('Company').any? %>
+                  <li><%= link_to 'Companies', '' %></li>
+                <% else %>
+                  <li>No 'Company' lists yet.</li>
+                <% end %>
+              </ul>
+            </div>
+          </li>
+        <% end %>
         <li>
           <div class="btn-group">
             <%= link_to 'Settings', user_url(current_user), class: 'btn' %>

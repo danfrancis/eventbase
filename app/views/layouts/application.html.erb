@@ -16,7 +16,7 @@
         </div>
       <% end %>
     <% end %>
-    <% if action_name != 'home' %>
+    <% if current_user %>
       <%= render 'layouts/header' %>
     <% end %>
     <%= yield %>
