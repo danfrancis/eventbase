@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   
+  before_filter :authorize, except: [:home]
+  
   def home
     @title = "EventBase | Awesomeness"
     @user = User.new

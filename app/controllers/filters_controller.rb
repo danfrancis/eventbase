@@ -1,4 +1,7 @@
 class FiltersController < ApplicationController
+  
+  before_filter :authorize
+  
   # GET /filters
   # GET /filters.json
   def index

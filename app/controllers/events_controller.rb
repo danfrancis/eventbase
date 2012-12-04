@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
 
+  before_filter :authorize
+
   def index
     @title = "EventBase | Events"
     @lists = current_user.lists.by_type("Event")

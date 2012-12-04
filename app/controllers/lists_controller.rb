@@ -1,4 +1,7 @@
 class ListsController < ApplicationController
+  
+  before_filter :authorize
+  
   # GET /lists
   # GET /lists.json
   def index

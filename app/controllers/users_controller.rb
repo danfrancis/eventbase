@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  before_filter :authorize, except: [:create]
+  
   # GET /users
   # GET /users.json
   def index

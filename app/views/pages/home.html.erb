@@ -1,4 +1,12 @@
 <div class="home-search span12">
-  <%= render partial: 'search', locals: { width: 'span8' } %>
+  <h1>EventBase</h1>
+  <% if current_user %>
+    <%= render partial: 'search', locals: { width: 'span8' } %>
+  <% else %>
+    <div class="span11 row">
+      <%= render 'pages/sign_in' %>
+      <%= render 'users/form' %>
+    </div>
+  <% end %>
 </div>
 

@@ -1,6 +1,9 @@
 class VenuesController < ApplicationController
   # GET /venues
   # GET /venues.json
+  
+  before_filter :authorize
+  
   def index
     @venues = Venue.all
 

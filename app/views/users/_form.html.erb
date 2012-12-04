@@ -1,3 +1,5 @@
+<div class="well offset1 span4">
+  <p>New to EventBase? Sign Up.</p>
 <%= form_for(User.new) do |f| %>
   <% if User.new.errors.any? %>
     <div id="error_explanation">
@@ -11,16 +13,15 @@
     </div>
   <% end %>
 
-  <li><%= f.text_field :first_name, placeholder: 'First Name' %></li>
-  <li><%= f.text_field :last_name, placeholder: 'Last Name' %></li>
-  <li><%= f.email_field :email, placeholder: 'Email' %></li>
-  <li><%= f.password_field :password, placeholder: 'Password' %></li>
-  <li><%= f.password_field :password_confirmation, placeholder: 'Password confirmation' %></li>
-  <li>
-    <%= check_box_tag :terms %><span> I agree to terms</span>
-    <%= f.submit 'Create Account', class: 'btn-primary', id: 'create_account' %>
-  </li>
+  <%= f.text_field :first_name, placeholder: 'First Name' %>
+  <%= f.text_field :last_name, placeholder: 'Last Name' %>
+  <%= f.email_field :email, placeholder: 'Email' %>
+  <%= f.password_field :password, placeholder: 'Password' %>
+  <%= f.password_field :password_confirmation, placeholder: 'Password confirmation' %><br/>
+  <%= check_box_tag :terms %><span> I agree to terms</span>
+  <%= f.submit 'Create Account', class: 'btn-primary', id: 'create_account' %>
 <% end %>
+</div>
 
 <script>
 

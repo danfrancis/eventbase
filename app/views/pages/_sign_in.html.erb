@@ -1,0 +1,7 @@
+<div class="well offset1 span3">
+  <%= form_tag(sessions_url) do %>
+    <%= text_field_tag :email, nil, placeholder: 'Email' %>
+    <%= password_field_tag :password, nil, placeholder: 'Password' %>
+    <%= submit_tag 'Sign In', class: 'btn-primary' %>
+  <% end %>
+</div>

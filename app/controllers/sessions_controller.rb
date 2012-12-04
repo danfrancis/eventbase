@@ -6,10 +6,10 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       session[:last_seen] = Time.now
       user.update_last_login
-      redirect_to dashboard_url
-    else
-      flash.now.alert = "Sorry, we didn't recognize your Email or Password. Please try again."
+      flash.now.notice = "Successfully signed in!"
       redirect_to root_url
+    else
+      redirect_to root_url, alert: "Sorry, we didn't recognize your Email or Password. Please try again."
     end
   end
   

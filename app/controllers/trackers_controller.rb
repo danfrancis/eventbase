@@ -1,5 +1,7 @@
 class TrackersController < ApplicationController
   
+  before_filter :authorize
+  
   def create
     #current_kase.update_attributes(params[:kase])
 
