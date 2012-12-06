@@ -1,3 +1,15 @@
-// Place all the styles related to the Events controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#events_table_length {
+	float: left;
+	padding: 10px;
+	select {
+		width: 60px;
+	}
+}
+
+#events_table_filter {
+	float: right;
+}
+
+#events_table_paginate a {
+	padding: 10px;
+}

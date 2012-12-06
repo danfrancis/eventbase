@@ -4,7 +4,6 @@ gem 'rails', '3.2.3'
 gem 'pg'
 gem 'heroku'
 gem 'thin'
-gem 'jquery-rails'
 gem 'pg_search'
 gem 'geocoder'
 gem 'gmaps4rails'
@@ -20,6 +19,8 @@ gem 'quiet_assets', group: :development
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem 'jquery-rails'
+  gem 'jquery-ui-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass', '~> 2.0.4.0'

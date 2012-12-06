@@ -1,36 +1,59 @@
 <h2>Event Directory</h2>
-<p>
-  Start Date:
-  End Date:
-</p>
-<table class="table table-striped">
-  <tr>
-    <th>Event Name</th>
-    <th>Category</th>
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>City/State</th>
-    <th>Country</th>
-    <th>Sponsors/Exhibitors</th>
-    <th>Add To...</th>
-  </tr>
-
-  <% @events.each do |event| %>
+<table id="events_table" class="table table-striped">
+  <thead>
     <tr>
-      <td><%= link_to event.name, event %></td>
-      <td><%= print_list(event.sector_names) %></td>
-      <td><%= event.event_start_date.strftime('%D') %></td>
-      <td><%= event.event_end_date.strftime('%D') %></td>
-      <td><%= event.city_and_state %></td>
-      <td><%= event.country %></td>
-      <td><%= event.attendances.length %></td>
-      <td>
-        <%= render partial: 'trackers/form', locals: { :tracking_item => event, :lists => @lists } %>
-      </td>
+      <th>Event Name</th>
+      <th>Category</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>City/State</th>
+      <th>Country</th>
+      <th>Sponsors/Exhibitors</th>
+      <th>Add To...</th>
     </tr>
+  </thead>
+  <% if @events.any? %>
+    <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= link_to event.name, event %></td>
+        <td><%= print_list(event.sector_names) %></td>
+        <td><%= event.event_start_date.strftime('%D') %></td>
+        <td><%= event.event_end_date.strftime('%D') %></td>
+        <td><%= event.city_and_state %></td>
+        <td><%= event.country %></td>
+        <td><%= event.attendances.length %></td>
+        <td>
+          <%= render partial: 'trackers/form', locals: { :tracking_item => event, :lists => @lists } %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  <% else %>
+    <tr><td>No events found. Please try another filter.</td></tr>
   <% end %>
 </table>
-  
-<p><%= link_to 'Request Coverage of an Event', '', class: 'btn btn-primary' %></p>
+<p><%= link_to 'Request Coverage of an Event', '#coverage', class: 'btn btn-primary', role: "button", 'data-toggle' => "modal" %></p>
 
+<!-- Modal -->
+<div id="coverage" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Request Coverage of an Event</h3>
+  </div>
+  <div class="modal-body">
+    <%= text_field_tag :event_name, nil, placeholder: 'Name of event...' %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Submit</button>
+  </div>
+</div>
 
+<script>
+
+  $(function(){
+    $('#events_table').dataTable();
+  });
+
+</script>
