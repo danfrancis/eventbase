@@ -1,7 +1,7 @@
 <% companies.each do |company| %>
   <tr>
     <td><%= link_to company.name, company %></td>
-    <td><%= company.sector_names %></td>
+    <td><%= print_list(company.sector_names) %></td>
     <td>
       <%= render partial: 'trackers/form', locals: { :tracking_item => company, :lists => lists } %>
     </td>

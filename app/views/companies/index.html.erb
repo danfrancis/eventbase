@@ -1,14 +1,33 @@
 <h2>Company Directory</h2>
-<table class="company_list_container table table-striped">
-  <tr>
-    <th>Company Name</th>
-    <th>Category</th>
-    <th>Add To...</th>
-  </tr>
-  <%= render partial: 'list', locals: { :companies => @companies, :lists => @lists, :page => @page } %>
+<table id="companies_table" class="company_list_container table table-striped">
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Category</th>
+      <th>Add To...</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'list', locals: { :companies => @companies, :lists => @lists, :page => @page } %>
+  </tbody>
 </table>
 <p>Loading... <%= image_tag 'loading-icon.gif' %></p>
-<p><%= link_to 'Request Coverage of a Company', '', class: 'btn btn-primary' %></p>
+<p><%= link_to 'Request Coverage of a Company', '#coverage', class: 'btn btn-primary', role: "button", 'data-toggle' => "modal" %></p>
+
+<!-- Modal -->
+<div id="coverage" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Request Coverage of a Company</h3>
+  </div>
+  <div class="modal-body">
+    <%= text_field_tag :company_name, nil, placeholder: 'Name of company...' %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Submit</button>
+  </div>
+</div>
 
 <script>
 
@@ -19,12 +38,15 @@
     $(window).scroll(function(){
       var scroll = $(window).height() + $(document).scrollTop();
       if ($(document).height() == scroll && flag == false){
-        $.get('<%= j(companies_scroll_url) %>', { page: page}, function(){
-          flag = false;
-        },'script');
+        // $.get('<%= j(companies_scroll_url) %>', { page: page}, function(){
+        //   flag = false;
+        // },'script');
         flag = true;
       }
     });
+    
+    $('#companies_table').dataTable();
+    
   });
 
 </script>
