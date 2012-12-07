@@ -1,16 +1,50 @@
 <p id="notice"><%= notice %></p>
-
+<h1>
+  <%= @company.name %>
+  <span class="pull-right"><%= render partial: 'trackers/form', locals: { :tracking_item => @company, lists: @lists_company } %></span>
+</h1>
 <p>
-  <b><%= link_to @company.name, "http://#{@company.url}" %></b>
+  <b>Homepage: </b><%= link_to "http://#{@company.url}", "http://#{@company.url}" %>
 </p>
-
-<%= render partial: 'trackers/form', locals: { :tracking_item => @company, lists: @lists } %>
-
-<h3>Conferences</h3>
-<ul>
+<p>
+  <b>Events Page: </b>
+</p>
+<p>
+  <b>Description: </b>
+</p>
+<p>
+  <b>Categories: </b>
+</p>
+<h3>Events</h3>
+<table id="attending_table" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Location</th>
+      <th>Role</th>
+      <th>Add to...</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @company.events.each do |event| %>
-    <li>
-      <%= link_to event.name, event %> | <%= event.event_start_date.present? && event.event_start_date <= Time.now ? 'Past' : 'Future' %>
-    </li>
+    <tr>
+      <td><%= link_to event.name, event %></td>
+      <td><%= event.event_start_date.strftime('%D') %></td>
+      <td><%= event.event_end_date.strftime('%D') %></td>
+      <td><%= event.venue.location %></td>
+      <td><%= @company.attendances.select { |a| a.event_id == event.id }.first.role %></td>
+      <td><%= render partial: 'trackers/form', locals: { :tracking_item => event, :lists => @lists_event } %></td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
+
+<script>
+
+  $(function(){
+    $('#attending_table').dataTable();
+  });
+
+</script>

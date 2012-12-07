@@ -32,4 +32,8 @@ class Venue < ActiveRecord::Base
     self.all.map { |v| "#{v.city}"}.uniq
   end
   
+  def location
+    state ? "#{city}, #{state}" : "#{city}, #{country}"
+  end
+  
 end

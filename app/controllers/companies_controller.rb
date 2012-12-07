@@ -18,8 +18,10 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
-    @company = Company.find(params[:id], include: [:events])
-    @lists = current_user.lists.by_type('Company')
+    @company = Company.find(params[:id], include: [:attendances, :events])
+    @lists = current_user.lists
+    @lists_event = @lists.by_type("Event")
+    @lists_company = @lists.by_type("Company")
     
     respond_to do |format|
       format.html # show.html.erb
