@@ -1,49 +1,61 @@
 <p id="notice"><%= notice %></p>
 
 <h1>
-  <%= link_to @event.name, "http://#{@event.url}" %>
+  <%= @event.name %>
+  <span class="pull-right"><%= render partial: 'trackers/form', locals: { :tracking_item => @event, lists: @lists_event } %></span>
 </h1>
-
-<%= render partial: 'trackers/form', locals: { :tracking_item => @event, lists: @lists } %>
 <p>
-  <b>Description:</b>
+  <b>Website: </b>
+  <%= link_to "http://#{@event.url}", "http://#{@event.url}" %>
+</p>
+<p>
+  <b>Description: </b>
   <%= @event.description %>
 </p>
-
 <p>
-  <b>Organizer:</b>
-  <%= @event.organizer %>
+  <b>Categories: </b>
+  <%= print_list(@event.sector_names) %>
 </p>
-
 <p>
-  <b>Venue:</b>
-  <%= link_to @event.venue.name, @event.venue %>
+  <b>Date: </b>
+  <%= @event.event_start_date.strftime('%D') %> - <%= @event.event_end_date.strftime('%D') %>
 </p>
-
 <p>
-  <b>Event start date:</b>
-  <%= @event.event_start_date %>
+  <b>Location: </b>
+  <%= @event.venue.name %>; <%= @event.venue.full_street_address %>
 </p>
-
 <p>
-  <b>Event end date:</b>
-  <%= @event.event_end_date %>
+  <b>Sponsors/Exhibitors: </b>
+  <%= @event.attendances.length %>
 </p>
-
 <p>
-  <b>Companies Attending: </b>
-  <table class="table">
-    <tr>
-      <th>Company Name</th>
-      <th>Role</th>
-    </tr>
+  <b>Previous Events: </b>
+</p>
+<p>
+  <table id="attendees_table" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Role</th>
+        <th>Add to...</th>
+      </tr>
+    </thead>
     <tbody>
   <% @attendances.each do |attendance| %>
       <tr>
         <td><%= link_to attendance.attending.name, attendance.attending %></td>
         <td><%= attendance.role %></td>
+        <td><%= render partial: 'trackers/form', locals: { :tracking_item => attendance.attending, :lists => @lists_company } %></td>
       </tr>
   <% end %>
     </tbody>
   </table>
 </p>
+
+<script>
+
+  $(function(){
+    $('#attendees_table').dataTable();
+  });
+
+</script>

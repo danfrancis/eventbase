@@ -17,7 +17,9 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @title = "EventBase | Event"
-    @lists = current_user.lists.by_type("Event")
+    @lists = current_user.lists
+    @lists_event = @lists.by_type("Event")
+    @lists_company = @lists.by_type("Company")
     @event = Event.find(params[:id], include: [:companies])
     @attendances = Attendance.includes([:attending]).where(event_id: @event.id)
     respond_to do |format|

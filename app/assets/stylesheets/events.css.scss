@@ -1,4 +1,4 @@
-#events_table_length {
+.dataTables_length {
 	float: left;
 	padding: 10px;
 	select {
@@ -6,10 +6,10 @@
 	}
 }
 
-#events_table_filter {
+.dataTables_filter {
 	float: right;
 }
 
-#events_table_paginate a {
+.dataTables_paginate a {
 	padding: 10px;
 }
