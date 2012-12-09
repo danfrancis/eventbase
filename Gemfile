@@ -12,6 +12,7 @@ gem 'exception_notification'
 gem 'newrelic_rpm'
 gem 'admin_data'
 gem 'quiet_assets', group: :development
+gem 'best_in_place'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

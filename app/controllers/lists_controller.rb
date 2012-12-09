@@ -66,10 +66,10 @@ class ListsController < ApplicationController
     respond_to do |format|
       if @list.update_attributes(params[:list])
         format.html { redirect_to current_user, notice: 'List was successfully updated.' }
-        format.json { head :no_content }
+        format.json { respond_with_bip(@list) }
       else
         format.html { render action: "edit" }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@list) }
       end
     end
   end

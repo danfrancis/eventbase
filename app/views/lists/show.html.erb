@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h2>
-  <%= @list.name %>
-  <%= link_to 'Rename', edit_list_path(@list), class: 'btn btn-primary' %>
+  <%= best_in_place @list, :name, :type => :input, activator: '#list_rename' %>
+  <%= link_to 'Rename', '', class: 'btn btn-primary', id: 'list_rename' %>
   <%= link_to 'Delete', list_path(@list), method: :delete, class: 'btn btn-danger', confirm: 'Are you sure you want to delete this list?' %>
   <%= link_to 'View in Calendar', '', class: 'btn btn-success' %>
 </h2>
@@ -54,6 +54,7 @@
 
   $(function(){
     $('#list_table').dataTable();
+    $(".best_in_place").best_in_place();
   });
 
 </script>
