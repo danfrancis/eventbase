@@ -16,7 +16,7 @@
         </a>
         <ul class="dropdown-menu trackers_list">
           <% lists.each do |list| %>
-            <li><label for="list"><%= check_box_tag "tracker[list_id][]", list.id, current_user.tracking?(tracking_item) %> <%= list.name %></label></li>
+            <li><label for="list"><%= check_box_tag "tracker[list_id][]", list.id, current_user.tracking?(tracking_item) %> <%= link_to list.name, list_url(list) %></label></li>
           <% end %>
           <li><%= text_field_tag :new_list, nil, class: 'span2', placeholder: 'New name...' %></li>
           <li><%= submit_tag 'Add', class: 'btn-success' %></li>

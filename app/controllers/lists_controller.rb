@@ -16,7 +16,8 @@ class ListsController < ApplicationController
   # GET /lists/1
   # GET /lists/1.json
   def show
-    @list = List.find(params[:id])
+    @lists = current_user.lists.includes([:trackers])
+    @list = List.find(params[:id], include: [:trackers])
 
     respond_to do |format|
       format.html # show.html.erb

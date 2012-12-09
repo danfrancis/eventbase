@@ -24,10 +24,12 @@ class TrackersController < ApplicationController
   end
   
   def destroy
-    tracker = Tracker.where("user_id = ? AND tracking_type = ? AND tracking_id = ?", current_user.id, params[:tracking_type], params[:tracking_id])
-    if tracker.any?
-      tracker.first.destroy
-    end
+    #tracker = Tracker.where("user_id = ? AND tracking_type = ? AND tracking_id = ?", current_user.id, params[:tracking_type], params[:tracking_id])
+    # if tracker.any?
+    #   tracker.first.destroy
+    # end
+    tracker = Tracker.find(params[:id])
+    tracker.destroy
     redirect_to :back
   end
 
