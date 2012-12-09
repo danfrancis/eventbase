@@ -1,8 +1,8 @@
 <div class="span12">
   <ul id="myTab" class="nav nav-tabs">
     <li class="active"><a href="#account" data-toggle="tab">Account Information</a></li>
-    <li><a href="#events" data-toggle="tab">Event Lists</a></li>
-    <li><a href="#companies" data-toggle="tab">Company Lists</a></li>
+    <!-- <li><a href="#events" data-toggle="tab">Event Lists</a></li>
+    <li><a href="#companies" data-toggle="tab">Company Lists</a></li> -->
   </ul>
   <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id="account">
@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <div class="tab-pane fade" id="events">
+    <!-- <div class="tab-pane fade" id="events">
       <p>Here are the events you are tracking:</p>
       <% if @events_tracking.any? %>
       <div class="well">
@@ -59,6 +59,6 @@
       <% end %>
       <%= render partial: 'lists/lists', locals: { type: 'Company', lists: @lists } %>
       <%= render partial: 'lists/form', locals: { type: 'Company' } %>
-    </div>
+    </div> -->
   </div>
 </div>
