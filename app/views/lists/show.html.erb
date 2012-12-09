@@ -3,7 +3,7 @@
 <h2>
   <%= @list.name %>
   <%= link_to 'Rename', edit_list_path(@list), class: 'btn btn-primary' %>
-  <%= link_to 'Delete', list_path(@list), method: :delete, class: 'btn btn-danger' %>
+  <%= link_to 'Delete', list_path(@list), method: :delete, class: 'btn btn-danger', confirm: 'Are you sure you want to delete this list?' %>
   <%= link_to 'View in Calendar', '', class: 'btn btn-success' %>
 </h2>
 
@@ -21,6 +21,10 @@
         <th>Country</th>
         <th>Sponsors/Exhibitors</th>
         <th></th>
+      <% else %>
+        <th>Company Name</th>
+        <th>Category</th>
+        <th></th>
       <% end %>
     </tr>
   </thead>
@@ -28,16 +32,16 @@
     <tbody>
     <% @list.trackers.each do |tracker| %>
       <tr>
-        <% if @list.list_type == 'Event' %>
           <td><%= link_to tracker.tracking.name, tracker.tracking %></td>
           <td><%= print_list(tracker.tracking.sector_names) %></td>
-          <td><%= tracker.tracking.event_start_date.strftime('%D') %></td>
-          <td><%= tracker.tracking.event_end_date.strftime('%D') %></td>
-          <td><%= tracker.tracking.city_and_state %></td>
-          <td><%= tracker.tracking.country %></td>
-          <td><%= tracker.tracking.attendances.length %></td>
+          <% if @list.list_type == 'Event' %>
+            <td><%= tracker.tracking.event_start_date.strftime('%D') %></td>
+            <td><%= tracker.tracking.event_end_date.strftime('%D') %></td>
+            <td><%= tracker.tracking.city_and_state %></td>
+            <td><%= tracker.tracking.country %></td>
+            <td><%= tracker.tracking.attendances.length %></td>
+          <% end %>
           <td><%= link_to 'Remove', tracker_url(tracker), method: :delete %></td>
-        <% end %>
       </tr>
     <% end %>
     </tbody>
