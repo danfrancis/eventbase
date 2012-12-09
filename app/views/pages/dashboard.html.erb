@@ -1,15 +1,15 @@
 <div class="dashboard">
   <div class="accordion span3" id="accordion2">
-    <h3>Filter my results by:</h3>
+    <h3 id="filtering">Filter my results by:</h3>
     <div class="accordion-group">
       <%= render partial: 'lists', locals: { filters: @filters } %>
     </div>
-    <div class="accordion-group">
-      <%= render partial: 'events', locals: { filters: @filters } %>
-    </div>
-    <div class="accordion-group">
-      <%= render partial: 'sectors', locals: { filters: @filters } %>
-    </div>
+    <!-- <div class="accordion-group">
+      <%#= render partial: 'events', locals: { filters: @filters } %>
+    </div> -->
+    <!-- <div class="accordion-group">
+      <%#= render partial: 'sectors', locals: { filters: @filters } %>
+    </div> -->
     <div class="accordion-group">
       <%= render partial: 'locations', locals: { filters: @filters } %>
     </div>
@@ -17,16 +17,16 @@
   </div>
   <div class="dashboard-results span8">
     <div id="calendar"></div>
-    <div id="company_details">
-      <table class="company_list_container table table-striped">
-        <tr>
-          <th>Company Name</th>
-          <th>Category</th>
-          <th>Add To...</th>
-        </tr>
-        <%= render partial: 'companies/list', locals: { :companies => @companies, :lists => @lists, :page => @page } %>
-      </table>
-    </div>
+    <!-- <div id="company_details">
+          <table class="company_list_container table table-striped">
+            <tr>
+              <th>Company Name</th>
+              <th>Category</th>
+              <th>Add To...</th>
+            </tr>
+            <%#= render partial: 'companies/list', locals: { :companies => @companies, :lists => @lists, :page => @page } %>
+          </table>
+        </div> -->
   </div>
 </div>
 
@@ -39,19 +39,19 @@
   <% end %>
   ];
   
-  var sectors = [
-  <% @sectors.each do |sector| %>
-    '<%= j(sector.name) %>'
-    <% if sector != @sectors.last %>,<% end %>
-  <% end %>
-  ];
+  // var sectors = [
+  // <% @sectors.each do |sector| %>
+  //   '<%= j(sector.name) %>'
+  //   <% if sector != @sectors.last %>,<% end %>
+  // <% end %>
+  // ];
 
   var events = [
   <% @filtered_events.each do |event| %>
     <% if event.event_start_date && event.event_end_date %>
       {
         id: <%= event.id %>,
-        title: '<%= j(event.name) %> (<%#= event.companies.length %>)'.replace('&amp;', '&'),
+        title: '<%= j(event.name) %> (<%= event.companies.length %>)'.replace('&amp;', '&'),
         start: new Date(<%= event.start_year %>, <%= event.start_month %>, <%= event.start_day %>),
         end: new Date(<%= event.end_year %>, <%= event.end_month %>, <%= event.end_day %>),
         categories: '<%#= event.sector_names %>',
@@ -107,8 +107,8 @@
   $(function(){
     
     $("#lists").typeahead({ source: lists });
-    $("#events").typeahead({ source: events_list });
-    $("#sectors").typeahead({ source: sectors });
+    // $("#events").typeahead({ source: events_list });
+    // $("#sectors").typeahead({ source: sectors });
     $("#locations").typeahead({ source: locations });
     
     $('#calendar').fullCalendar({
@@ -116,16 +116,24 @@
         header: {
   				left: 'prev,next today',
   				center: 'title',
-  				right: 'month,basicWeek,basicDay'
+  				right: 'month,basicWeek'
   			},
         defaultView: 'basicWeek',
         events: events,
         eventClick: function(calEvent, jsEvent, view) {
           window.location.replace('<%= root_url %>events/'+calEvent.id);
         },
-        dayClick: function(date, allDay, jsEvent, view){
-          $('#calendar').fullCalendar('changeView', 'basicDay');
-          $('#calendar').fullCalendar('gotoDate', date);
+        // dayClick: function(date, allDay, jsEvent, view){
+        //   $('#calendar').fullCalendar('changeView', 'basicDay');
+        //   $('#calendar').fullCalendar('gotoDate', date);
+        // },
+        eventMouseover: function(event, jsEvent, view) { 
+          var el = jsEvent['srcElement'];
+          // console.log($(el));
+        },
+        eventMouseout: function(event, jsEvent, view) { 
+          var el = jsEvent['srcElement'];
+          // $(el).popover('destroy');
         },
         limitEvents: 5
     });
@@ -144,9 +152,6 @@
       $('#calendar').fullCalendar( 'removeEventSource', events );
       $('#calendar').fullCalendar( 'addEventSource', arr );
     });
-    
-    
-    //fc-today
   });
 
 
