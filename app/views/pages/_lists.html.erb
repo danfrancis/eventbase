@@ -6,11 +6,11 @@
 <div id="collapseOne" class="accordion-body collapse in">
   <div class="accordion-inner">
     <%= render partial: 'filter_search', locals: { filterable_type: 'List' } %>
-    <% if filters.for_lists.any? %>
-      <% filters.for_lists.each do |f| %>
+    <% if filters.any? %>
+      <% filters.each do |f| %>
         <p>
           <%#= check_box_tag :list, nil, false, class: 'list_filter', id: "list_#{list.id}" %>
-          <span><%= f.filterable.list_type.pluralize %>: <%= f.title %> (<%= f.filterable.trackers.length %>)</span>
+          <span><%= f.title %> (<%= f.filterable.trackers.length %>)</span>
           <%= link_to 'X', filter_url(f), method: :delete, confirm: 'Are you sure you want to remove this filter?' %>
         </p>
       <% end %>

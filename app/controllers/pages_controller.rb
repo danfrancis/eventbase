@@ -18,37 +18,27 @@ class PagesController < ApplicationController
   
   def dashboard
     @title = 'EventBase | Dashboard'
-    @events = Event.all
-    @sectors = Sector.all
-    @lists = current_user.lists.includes(:trackers).order('list_type DESC')
-    @filters = current_user.filters.includes(:filterable)
+    @lists = current_user.lists.includes(:trackers).order('list_type DESC').by_type(params[:type])
+    @filters = current_user.filters.includes(:filterable).keep_if { |f| f.filterable.list_type == params[:type] }
     @locations = Venue.locations
     if @filters.any?
-      @filtered_events = get_filtered_events(@filters)
+      @filtered_events = get_filtered_events(@filters, params[:type])
     else
+      @events = Event.all
       @filtered_events = @events
     end
-    @companies = @filtered_events.map { |e| e.companies }.flatten.uniq[0..5]
   end
   
   private
   
-    def get_filtered_events(filters)
-      events = Array.new()
-      filters.each do |f|
-        if f.filterable_type == 'Location'
-          #Placeholder logic goes here
-        elsif f.filterable.class.name == "Event"
-          events.push(f.filterable)
-        elsif f.filterable.class.name == "List"
-          if f.filterable.list_type == "Company"
-            f.filterable.companies.map { |c| events.concat(c.events) }
-          else
-            events.concat(f.filterable.events)
-          end
-        end
+    def get_filtered_events(filters, type)
+      if type == "Event"
+        events = filters.map { |f| f.filterable.events }
+      else
+        companies = filters.map { |f| f.filterable.companies }.flatten
+        events = companies.map { |c| c.events }.flatten
       end
-      return events.uniq!
+      return events.flatten
     end
   
   

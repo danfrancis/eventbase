@@ -25,12 +25,12 @@
               </a>
               <ul class="dropdown-menu">
                 <% if @lists.by_type('Event').any? %>
-                  <li><%= link_to 'Events', '' %></li>
+                  <li><%= link_to 'Events', '/dashboard?type=Event' %></li>
                 <% else %>
                   <li>No 'Event' lists yet.</li>
                 <% end %>
                 <% if @lists.by_type('Company').any? %>
-                  <li><%= link_to 'Companies', '' %></li>
+                  <li><%= link_to 'Companies', '/dashboard?type=Company' %></li>
                 <% else %>
                   <li>No 'Company' lists yet.</li>
                 <% end %>

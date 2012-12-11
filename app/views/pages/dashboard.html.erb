@@ -1,15 +1,9 @@
 <div class="dashboard">
   <div class="accordion span3" id="accordion2">
-    <h3 id="filtering">Filter my results by:</h3>
+    <h3 id="filtering">Filter by ...</h3>
     <div class="accordion-group">
       <%= render partial: 'lists', locals: { filters: @filters } %>
     </div>
-    <!-- <div class="accordion-group">
-      <%#= render partial: 'events', locals: { filters: @filters } %>
-    </div> -->
-    <!-- <div class="accordion-group">
-      <%#= render partial: 'sectors', locals: { filters: @filters } %>
-    </div> -->
     <div class="accordion-group">
       <%= render partial: 'locations', locals: { filters: @filters } %>
     </div>
@@ -17,16 +11,6 @@
   </div>
   <div class="dashboard-results span8">
     <div id="calendar"></div>
-    <!-- <div id="company_details">
-          <table class="company_list_container table table-striped">
-            <tr>
-              <th>Company Name</th>
-              <th>Category</th>
-              <th>Add To...</th>
-            </tr>
-            <%#= render partial: 'companies/list', locals: { :companies => @companies, :lists => @lists, :page => @page } %>
-          </table>
-        </div> -->
   </div>
 </div>
 
@@ -39,13 +23,6 @@
   <% end %>
   ];
   
-  // var sectors = [
-  // <% @sectors.each do |sector| %>
-  //   '<%= j(sector.name) %>'
-  //   <% if sector != @sectors.last %>,<% end %>
-  // <% end %>
-  // ];
-
   var events = [
   <% @filtered_events.each do |event| %>
     <% if event.event_start_date && event.event_end_date %>
@@ -59,12 +36,6 @@
       }
     <% if event != @filtered_events.length %>,<% end %>
     <% end %>
-  <% end %>
-  ];
-  var events_list = [
-  <% @events.each do |event| %>
-    '<%= j(event.name) %>'
-    <% if event != @events.last %>,<% end %>
   <% end %>
   ];
   
@@ -107,8 +78,6 @@
   $(function(){
     
     $("#lists").typeahead({ source: lists });
-    // $("#events").typeahead({ source: events_list });
-    // $("#sectors").typeahead({ source: sectors });
     $("#locations").typeahead({ source: locations });
     
     $('#calendar').fullCalendar({
@@ -129,14 +98,17 @@
         // },
         eventMouseover: function(event, jsEvent, view) { 
           var el = jsEvent['srcElement'];
-          // console.log($(el));
+          var html = '<p>Title: '+ event["title"] + '</p><p>Start: ' + event["start"]+ '</p><p>End: '+event["end"]+'</p>';
+          $(el).popover({content: html, placement: 'top'});
+          $(el).popover('show');
         },
         eventMouseout: function(event, jsEvent, view) { 
           var el = jsEvent['srcElement'];
-          // $(el).popover('destroy');
         },
         limitEvents: 5
     });
+    
+    $('#calendar').fullCalendar('gotoDate', events[0]['start'].getFullYear(), events[0]['start'].getMonth(), events[0]['start'].getDate())
     
     $('.category_filter').click(function(){
       var category = $(this).attr('id');
@@ -152,6 +124,7 @@
       $('#calendar').fullCalendar( 'removeEventSource', events );
       $('#calendar').fullCalendar( 'addEventSource', arr );
     });
+        
   });
 
 
