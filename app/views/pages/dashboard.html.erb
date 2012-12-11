@@ -99,6 +99,9 @@
         eventMouseover: function(event, jsEvent, view) { 
           var el = jsEvent['srcElement'];
           var html = '<p>Title: '+ event["title"] + '</p><p>Start: ' + event["start"]+ '</p><p>End: '+event["end"]+'</p>';
+          <% if params[:type] == 'Company' %>
+            html += '<p>Attending: TBD</p>';
+          <% end %>
           $(el).popover({content: html, placement: 'top'});
           $(el).popover('show');
         },
