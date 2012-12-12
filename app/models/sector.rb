@@ -4,5 +4,6 @@ class Sector < ActiveRecord::Base
   #Associations
   has_many :tags
   has_many :events, through: :tags, source_type: 'Event', source: :taggable
+  has_many :companies, through: :tags, source_type: 'Company', source: :taggable
   
 end

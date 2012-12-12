@@ -29,4 +29,6 @@ EventBase::Application.routes.draw do
   
   delete '/remove_filters/:type' => 'filters#remove', as: :remove_all_filters_of_type
   delete '/remove_all_filters' => 'filters#remove_all', as: :remove_all_filters
+  
+  get '/sectors/:id' => 'sectors#show'
 end

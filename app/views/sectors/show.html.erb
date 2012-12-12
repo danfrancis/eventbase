@@ -1,0 +1,67 @@
+<h1><%= @sector.name %></h1>
+<br/>
+<div class="well">
+  <h3>Events</h3>
+  <table id="attending_table" class="table">
+    <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Location</th>
+        <th>Role</th>
+        <th>Add to...</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @sector.events.each do |event| %>
+      <tr>
+        <td><%= link_to event.name, event %></td>
+        <td><%= event.event_start_date.strftime('%D') %></td>
+        <td><%= event.event_end_date.strftime('%D') %></td>
+        <td><%= event.venue.location %></td>
+        <td><%= event.attendances.length %></td>
+        <td><%= render partial: 'trackers/form', locals: { :tracking_item => event, :lists => @lists_event } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="well">
+  <h3>Companies</h3>
+  <table id="companies" class="table">
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Add to...</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% @sector.companies.each do |company| %>
+      <tr>
+        <td><%= link_to company.name, company %></td>
+        <td><%= render partial: 'trackers/form', locals: { :tracking_item => attendance.attending, :lists => @lists_company } %></td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script>
+
+  $(function(){
+    $('#attendees_table').dataTable();
+    $('#companies').dataTable();
+  });
+
+</script>
+
+
+<script>
+
+  $(function(){
+    $('#attending_table').dataTable();
+  });
+
+</script>
