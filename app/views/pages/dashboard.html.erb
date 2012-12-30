@@ -31,6 +31,8 @@
         title: '<%= j(event.name) %> (<%= event.companies.length %>)'.replace('&amp;', '&'),
         start: new Date(<%= event.start_year %>, <%= event.start_month %>, <%= event.start_day %>),
         end: new Date(<%= event.end_year %>, <%= event.end_month %>, <%= event.end_day %>),
+        attending_number: <%= event.companies.length %>,
+        attending: '<%= event.company_names %>',
         categories: '<%#= event.sector_names %>',
         show: true
       }
@@ -100,9 +102,9 @@
           var el = jsEvent['srcElement'];
           var html = '<p>Title: '+ event["title"] + '</p><p>Start: ' + event["start"]+ '</p><p>End: '+event["end"]+'</p>';
           <% if params[:type] == 'Company' %>
-            html += '<p>Attending: TBD</p>';
+            html += '<p>Attending (' + event["attending_number"] + '):</p><ul><li>' + event["attending"] + '</li></ul>';
           <% end %>
-          $(el).popover({content: html, placement: 'top'});
+          $(el).popover({content: html, placement: 'bottom'});
           $(el).popover('show');
         },
         eventMouseout: function(event, jsEvent, view) { 

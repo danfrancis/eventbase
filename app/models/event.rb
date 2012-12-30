@@ -31,6 +31,10 @@ class Event < ActiveRecord::Base
   def sector_names
     return self.sectors.map { |sector| sector.name }
   end
+
+  def company_names
+    self.companies[0..5].map { |company| company.name }.join('</li><li>').html_safe
+  end
   
   def start_year
     self.event_start_date.strftime('%Y')
