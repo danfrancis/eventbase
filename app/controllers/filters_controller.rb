@@ -51,7 +51,7 @@ class FiltersController < ApplicationController
         format.html { redirect_to :back, notice: 'Filter was successfully created.' }
         format.json { render json: @filter, status: :created, location: @filter }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to :back, alert: 'Filter not created.' }
         format.json { render json: @filter.errors, status: :unprocessable_entity }
       end
     end

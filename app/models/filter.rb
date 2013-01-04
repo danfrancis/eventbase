@@ -15,9 +15,20 @@ class Filter < ActiveRecord::Base
   #Callback
   before_create :get_filterable_id
   
+  #Validation
+  validate :unique_name_for_a_user
+  
   def get_filterable_id
     filterable = self.filterable_type.constantize.find_or_create_by_name(self.title)
     self.filterable_id = filterable.id
+  end
+  
+  def unique_name_for_a_user
+    user = User.find(self.user_id.to_s, include: :filters)
+    filter_names = user.filters.map { |filter| filter.title.downcase }
+    if filter_names.index(self.title.downcase).present?
+      errors.add(:title, "must be unique")
+    end
   end
 
 end

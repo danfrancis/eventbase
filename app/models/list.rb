@@ -11,4 +11,15 @@ class List < ActiveRecord::Base
   #Scopes
   scope :by_type, lambda { |type| where("list_type = ?", type)}
   
+  #Validation
+  validate :unique_name_for_a_user
+  
+  def unique_name_for_a_user
+    user = User.find(self.user_id.to_s, include: :lists)
+    list_names = user.lists.map { |list| list.name.downcase }
+    if list_names.index(self.name.downcase).present?
+      errors.add(:name, "must be unique")
+    end
+  end
+  
 end

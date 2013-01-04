@@ -6,10 +6,12 @@ class TrackersController < ApplicationController
     #current_kase.update_attributes(params[:kase])
     
     if params[:new_list].present?
-      list = List.create!(list_type: params[:tracking_type], name: params[:new_list], user_id: current_user.id)
-      params[:tracker] = { list_id: list.id, user_id: current_user.id, tracking_type: params[:tracking_type], tracking_id: params[:tracking_id] }
-      tracker = Tracker.new(params[:tracker])
-      tracker.save!
+      list = List.create(list_type: params[:tracking_type], name: params[:new_list], user_id: current_user.id)
+      if list
+        params[:tracker] = { list_id: list.id, user_id: current_user.id, tracking_type: params[:tracking_type], tracking_id: params[:tracking_id] }
+        tracker = Tracker.new(params[:tracker])
+        tracker.save!
+      end
     elsif params[:tracker].present?
       params[:tracker][:list_id].each do |list_id|
         if list_id.present?
