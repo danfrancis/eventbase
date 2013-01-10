@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   def home
     @title = "EventBase | Awesomeness"
     @user = User.new
-    @lists = current_user.lists if current_user
+    @lists = current_user ? current_user.lists : []
   end
   
   def search
