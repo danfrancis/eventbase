@@ -1,6 +1,6 @@
 EventBase::Application.configure do
   
-  config.middleware.use ExceptionNotifier
+  config.middleware.use ExceptionNotifier,
     :email_prefix => "Error in EventBase",
     :sender_address => %{"support" ENV['email_address']},
     :exception_recipients => %w{'bhennes2@gmail.com' 'francis.daniel@gmail.com'}
