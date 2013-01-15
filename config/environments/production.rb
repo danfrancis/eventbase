@@ -75,7 +75,7 @@ EventBase::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'baci.lindsaar.net',
+    :domain               => 'eventbase.herokuapp.com',
     :user_name            => ENV['email_address'],
     :password             => ENV['email_password'],
     :authentication       => 'plain',
