@@ -8,7 +8,7 @@ gem 'pg_search'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'kaminari'
-gem 'exception_notification'
+gem 'exception_notification', '2.6.1'
 gem 'newrelic_rpm'
 gem 'admin_data'
 gem 'quiet_assets', group: :development
