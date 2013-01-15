@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   def get_current_companies_and_events_user_lists
     companies = Company.all
     events = Event.all
+    # Find a current user
     lists = current_user ? current_user.lists : []
     @companies_events_lists = companies.keep_if { |c| c.name.present? && c.name.length > 0 } + events.keep_if { |e| e.name.present? && e.name.length > 0 } + lists
   end
