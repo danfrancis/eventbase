@@ -31,4 +31,7 @@ EventBase::Application.routes.draw do
   delete '/remove_all_filters' => 'filters#remove_all', as: :remove_all_filters
   
   get '/sectors/:id' => 'sectors#show'
+  
+  get '/autocomplete' => 'pages#autocomplete'
+  
 end

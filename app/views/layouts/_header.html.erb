@@ -115,20 +115,37 @@ $.widget( "custom.catcomplete", $.ui.autocomplete, {
 <script>
 
   $(function(){
-    var companies_events_lists = [
-    <% @companies_events_lists.each do |item| %>
-      { category: '<%= j(item.class.name) %>', label: '<%= j(item.name) %>', url: '<%= "#{item.class.name.downcase.pluralize}/#{item.id}" %>' }
-      <% if item != @companies_events_lists.last %>,<% end %>
-    <% end %>
-    ];
-
-    $("#search").catcomplete({ 
-      source: companies_events_lists,
-      select: function(event, ui){
-        window.location.replace('<%= j(root_url) %>' + ui.item['url']);
-      }
-    });
     
+    $.get('/autocomplete', null, function(data){
+      
+      var autocomplete = new Array();
+  
+      for (var key in data){
+        data[key].forEach(function(d) {
+          if (key == 'companies'){
+            var cat = 'Company';
+          }
+          else if (key == 'events'){
+            var cat = 'Event';
+          }
+          else if (key == 'sectors'){
+            var cat = 'Sector';
+          }
+          else {
+            var cat = 'List';
+          }
+          autocomplete.push({ category: cat, label: d.name, url: key + '/' + d.id });
+        });
+      }
+
+      $("#search").catcomplete({ 
+        source: autocomplete,
+        select: function(event, ui){
+          window.location.replace('<%= j(root_url) %>' + ui.item['url']);
+        }
+      });
+    }, 'json');
+        
     $('#sign_in').on('click', function(){
       setTimeout('$("#email").focus()', 300);
     });

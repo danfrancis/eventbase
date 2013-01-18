@@ -29,6 +29,18 @@ class PagesController < ApplicationController
     end
   end
   
+  def autocomplete
+    @companies = Company.all.keep_if { |c| c.name.present? && c.name.length > 0 }
+    @events = Event.all.keep_if { |e| e.name.present? && e.name.length > 0 }
+    @sectors = Sector.all
+    @lists = current_user ? current_user.lists : []
+    
+    respond_to do |format|
+      format.json { render json: { companies: @companies, events: @events, sectors: @sectors, lists: @lists } }
+    end
+    
+  end
+  
   private
   
     def get_filtered_events(filters, type)
