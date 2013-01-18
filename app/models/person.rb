@@ -11,6 +11,6 @@ class Person < ActiveRecord::Base
   # multisearchable :against => [:name]
   
   #Pagination
-  paginates_per 25
+  # paginates_per 25
   
 end
