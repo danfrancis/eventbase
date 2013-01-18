@@ -30,9 +30,9 @@ class PagesController < ApplicationController
   end
   
   def autocomplete
-    @companies = Company.all.keep_if { |c| c.name.present? && c.name.length > 0 }
-    @events = Event.all.keep_if { |e| e.name.present? && e.name.length > 0 }
-    @sectors = Sector.all
+    @companies = Company.all_cached.keep_if { |c| c.name.present? && c.name.length > 0 }
+    @events = Event.all_cached.keep_if { |e| e.name.present? && e.name.length > 0 }
+    @sectors = Sector.all_cached
     @lists = current_user ? current_user.lists : []
     
     respond_to do |format|

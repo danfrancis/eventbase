@@ -5,8 +5,8 @@ class Venue < ActiveRecord::Base
   has_many :events
   
   #Search
-  include PgSearch
-  multisearchable :against => [:name]
+  # include PgSearch
+  # multisearchable :against => [:name]
   
   # Geocoding
   geocoded_by :full_street_address, :latitude  => :lat, :longitude => :long # ActiveRecord

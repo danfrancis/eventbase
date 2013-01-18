@@ -47,6 +47,7 @@ GEM
       execjs
     coffee-script-source (1.4.0)
     daemons (1.1.9)
+    dalli (2.2.1)
     erubis (2.7.0)
     eventmachine (1.0.0)
     exception_notification (2.6.1)
@@ -74,9 +75,6 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.6)
-    kaminari (0.14.1)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     launchy (2.1.2)
       addressable (~> 2.3)
     mail (2.4.4)
@@ -88,9 +86,6 @@ GEM
     netrc (0.7.7)
     newrelic_rpm (3.5.5.38)
     pg (0.14.1)
-    pg_search (0.5.7)
-      activerecord (>= 3)
-      activesupport (>= 3)
     polyglot (0.3.3)
     quiet_assets (1.0.1)
       railties (~> 3.1)
@@ -156,16 +151,15 @@ DEPENDENCIES
   best_in_place
   bootstrap-sass (~> 2.0.4.0)
   coffee-rails (~> 3.2.1)
+  dalli
   exception_notification (= 2.6.1)
   geocoder
   gmaps4rails
   heroku
   jquery-rails
   jquery-ui-rails
-  kaminari
   newrelic_rpm
   pg
-  pg_search
   quiet_assets
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)

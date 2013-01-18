@@ -7,8 +7,8 @@ class Person < ActiveRecord::Base
   has_many :attendances, as: :attending
   
   #Search
-  include PgSearch
-  multisearchable :against => [:name]
+  # include PgSearch
+  # multisearchable :against => [:name]
   
   #Pagination
   paginates_per 25

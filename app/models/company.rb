@@ -9,11 +9,23 @@ class Company < ActiveRecord::Base
   has_many :attendances, as: :attending
   
   #Search
-  include PgSearch
-  multisearchable :against => [:name]  
+  # include PgSearch
+  # multisearchable :against => [:name]  
   
   #Pagination
-  paginates_per 25
+  # paginates_per 25
+  
+  #Cache
+  after_save    :expire_company_all_cache
+  after_destroy :expire_company_all_cache
+
+  def expire_company_all_cache
+    Rails.cache.delete('Company.all')
+  end
+  
+  def self.all_cached
+    Rails.cache.fetch('Company.all') { all }
+  end
   
   #Instance Methods
   def sector_names

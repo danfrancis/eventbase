@@ -13,11 +13,23 @@ class Event < ActiveRecord::Base
   has_many :companies, through: :attendances, source: :attending, source_type: 'Company'
   
   #Search
-  include PgSearch
-  multisearchable :against => [:name]
+  # include PgSearch
+  # multisearchable :against => [:name]
   
   #Scope
   scope :with_a_name, where('name <> ?', "")
+  
+  #Cache
+  after_save    :expire_event_all_cache
+  after_destroy :expire_event_all_cache
+
+  def expire_event_all_cache
+    Rails.cache.delete('Event.all')
+  end
+  
+  def self.all_cached
+    Rails.cache.fetch('Event.all') { all }
+  end
   
   #Instance Methods
   def city_and_state

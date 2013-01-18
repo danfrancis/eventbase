@@ -4,15 +4,16 @@ gem 'rails', '3.2.11'
 gem 'pg'
 gem 'heroku'
 gem 'thin'
-gem 'pg_search'
+# gem 'pg_search'
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'kaminari'
+# gem 'kaminari'
 gem 'exception_notification', '2.6.1'
 gem 'newrelic_rpm'
 gem 'admin_data'
 gem 'quiet_assets', group: :development
 gem 'best_in_place'
+gem 'dalli'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
