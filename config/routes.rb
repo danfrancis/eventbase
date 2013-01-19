@@ -33,5 +33,6 @@ EventBase::Application.routes.draw do
   get '/sectors/:id' => 'sectors#show'
   
   get '/autocomplete' => 'pages#autocomplete'
+  get '/get_filtered_events' => 'pages#get_filtered_events'
   
 end

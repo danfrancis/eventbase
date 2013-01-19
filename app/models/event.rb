@@ -32,6 +32,30 @@ class Event < ActiveRecord::Base
   end
   
   #Instance Methods
+  def title
+    "#{name} (#{self.companies.length})"
+  end
+  
+  def start
+    event_start_date.strftime('%F')
+  end
+  
+  def end
+    event_end_date.strftime('%F')
+  end
+  
+  def attending_number
+    companies.length
+  end
+  
+  def attending
+    company_names
+  end
+
+  def categories
+    sector_names
+  end
+  
   def city_and_state
     return "#{self.venue.city}, #{self.venue.state}"
   end

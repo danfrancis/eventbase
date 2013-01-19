@@ -86,35 +86,23 @@
     <% end %>
   </div>
 </div>
-
-<style>
-.ui-autocomplete-category {
-    font-weight: bold;
-    padding: .2em .4em;
-    margin: .8em 0 .2em;
-    line-height: 1.5;
-}
-</style>
-<script>
-$.widget( "custom.catcomplete", $.ui.autocomplete, {
-    _renderMenu: function( ul, items ) {
-        var that = this,
-            currentCategory = "";
-        $.each( items, function( index, item ) {
-            if ( item.category != currentCategory ) {
-                ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
-                currentCategory = item.category;
-            }
-            that._renderItemData( ul, item );
-        });
-    }
-});
-</script>
-
-
 <script>
 
   $(function(){
+    
+    $.widget( "custom.catcomplete", $.ui.autocomplete, {
+        _renderMenu: function( ul, items ) {
+            var that = this,
+                currentCategory = "";
+            $.each( items, function( index, item ) {
+                if ( item.category != currentCategory ) {
+                    ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+                    currentCategory = item.category;
+                }
+                that._renderItemData( ul, item );
+            });
+        }
+    });
     
     $.get('/autocomplete', null, function(data){
       

@@ -10,9 +10,15 @@
     <%= link_to 'Reset my filters', remove_all_filters_url, confirm: 'Are you sure you want to clear all your filters?', method: :delete %>
   </div>
   <div class="dashboard-results span8">
+    <div id="calendar_loading" class="well">
+      <h3>Compiling your events...</h3>
+      <div class="progress progress-striped active">
+        <div class="bar" style="width: 100%;"></div>
+      </div>
+    </div>
     <div id="calendar"></div>
     <% if params[:type] == 'Company' %>
-      <table>
+      <!-- <table>
         <tr>
           <td class="attending_companies fc-widget-content">Total Companies</td>
           <td class="attending_companies fc-widget-content">Total Companies</td>
@@ -22,7 +28,7 @@
           <td class="attending_companies fc-widget-content">Total Companies</td>
           <td style="width: 88px;" class="attending_companies fc-widget-content">Total Companies</td>
         </tr>
-      </table>
+      </table> -->
     <% end %>
   </div>
 </div>
@@ -36,98 +42,99 @@
   <% end %>
   ];
   
-  var events = [
-  <% @filtered_events.each do |event| %>
-    <% if event.event_start_date && event.event_end_date %>
-      {
-        id: <%= event.id %>,
-        title: '<%= j(event.name) %> (<%= event.companies.length %>)'.replace('&amp;', '&'),
-        start: new Date(<%= event.start_year %>, <%= event.start_month %>, <%= event.start_day %>),
-        end: new Date(<%= event.end_year %>, <%= event.end_month %>, <%= event.end_day %>),
-        attending_number: <%= event.companies.length %>,
-        attending: '<%= event.company_names %>',
-        categories: '<%#= event.sector_names %>',
-        show: true
-      }
-    <% if event != @filtered_events.length %>,<% end %>
-    <% end %>
-  <% end %>
-  ];
-  
-  var arr = [];
-  
   var locations = [
   <% @locations.each do |location| %>
     '<%= j(location) %>'
     <% if location != @locations.last %>,<% end %>
   <% end %>
   ];
+    
+  var arr = [];
   
-  var Filter = {
-    init: function(){
-      filters = this.getCurrentFilters();
-      console.log(filters);
-    },
-    getCurrentFilters: function(){
-      if (sessionStorage.getItem('filters') != null){
-        return sessionStorage.getItem('filters');
-      }
-      else {
-        return []
-      }
-    },
-    addFilter: function(id, title, type){
-      var filter = {
-        id: id,
-        title: title,
-        type: type
-      };
-      filters.push(filter);
-      sessionStorage.setItem('filters', filters);
-    },
-    resetAllFilters: function(){
-      sessionStorage.removeItem('filters')
-    } 
-  };
-
+  $('#calendar').fullCalendar({
+      // your options here
+      header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek'
+			},
+      defaultView: 'basicWeek',
+      eventSources: [
+        {
+            url: '/get_filtered_events',
+            type: 'GET',
+            data: {
+                type: '<%= params[:type] %>'
+            },
+            success: function(data) {
+              $('#calendar_loading').slideUp();
+              var start_date = data[0]['start'].split('-');
+              $('#calendar').fullCalendar('gotoDate', start_date[0], parseInt(start_date[1]) - 1, start_date[2]);
+            },
+            error: function() {
+              alert('There was an error while fetching events!');
+            }
+            //,
+            // color: 'blue',   // a non-ajax option
+            // textColor: 'white' // a non-ajax option
+        }
+      ],
+      eventClick: function(calEvent, jsEvent, view) {
+        window.location.replace('<%= root_url %>events/'+calEvent.id);
+      },
+      // dayClick: function(date, allDay, jsEvent, view){
+      //   $('#calendar').fullCalendar('changeView', 'basicDay');
+      //   $('#calendar').fullCalendar('gotoDate', date);
+      // },
+      eventMouseover: function(event, jsEvent, view) { 
+        var el = jsEvent['srcElement'];
+        var html = '<p>Title: '+ event["title"] + '</p><p>Start: ' + event["start"]+ '</p><p>End: '+event["end"]+'</p>';
+        <% if params[:type] == 'Company' %>
+          html += '<p>Attending (' + event["attending_number"] + '):</p><ul><li>' + event["attending"] + '</li></ul>';
+        <% end %>
+        $(el).popover({content: html, placement: 'bottom'});
+        $(el).popover('show');
+      },
+      eventMouseout: function(event, jsEvent, view) { 
+        var el = jsEvent['srcElement'];
+      },
+      limitEvents: 5
+  });
+  
+  
+  // var Filter = {
+  //   init: function(){
+  //     filters = this.getCurrentFilters();
+  //     console.log(filters);
+  //   },
+  //   getCurrentFilters: function(){
+  //     if (sessionStorage.getItem('filters') != null){
+  //       return sessionStorage.getItem('filters');
+  //     }
+  //     else {
+  //       return []
+  //     }
+  //   },
+  //   addFilter: function(id, title, type){
+  //     var filter = {
+  //       id: id,
+  //       title: title,
+  //       type: type
+  //     };
+  //     filters.push(filter);
+  //     sessionStorage.setItem('filters', filters);
+  //   },
+  //   resetAllFilters: function(){
+  //     sessionStorage.removeItem('filters')
+  //   } 
+  // };
+  
   $(function(){
     
     $("#lists").typeahead({ source: lists });
     $("#locations").typeahead({ source: locations });
     
-    $('#calendar').fullCalendar({
-        // your options here
-        header: {
-  				left: 'prev,next today',
-  				center: 'title',
-  				right: 'month,basicWeek'
-  			},
-        defaultView: 'basicWeek',
-        events: events,
-        eventClick: function(calEvent, jsEvent, view) {
-          window.location.replace('<%= root_url %>events/'+calEvent.id);
-        },
-        // dayClick: function(date, allDay, jsEvent, view){
-        //   $('#calendar').fullCalendar('changeView', 'basicDay');
-        //   $('#calendar').fullCalendar('gotoDate', date);
-        // },
-        eventMouseover: function(event, jsEvent, view) { 
-          var el = jsEvent['srcElement'];
-          var html = '<p>Title: '+ event["title"] + '</p><p>Start: ' + event["start"]+ '</p><p>End: '+event["end"]+'</p>';
-          <% if params[:type] == 'Company' %>
-            html += '<p>Attending (' + event["attending_number"] + '):</p><ul><li>' + event["attending"] + '</li></ul>';
-          <% end %>
-          $(el).popover({content: html, placement: 'bottom'});
-          $(el).popover('show');
-        },
-        eventMouseout: function(event, jsEvent, view) { 
-          var el = jsEvent['srcElement'];
-        },
-        limitEvents: 5
-    });
-    
-    $('#calendar').fullCalendar('gotoDate', events[0]['start'].getFullYear(), events[0]['start'].getMonth(), events[0]['start'].getDate())
-    
+
     $('.category_filter').click(function(){
       var category = $(this).attr('id');
       arr = [];

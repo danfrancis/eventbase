@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :authorize
   
+  before_filter :find_lists
+  
   http_basic_authenticate_with :name => ENV['http_username'], :password => ENV['http_password']
     
   def current_user
@@ -16,6 +18,10 @@ class ApplicationController < ActionController::Base
     
   def authorize
     redirect_to root_url unless current_user
+  end
+  
+  def find_lists
+    @lists = current_user ? current_user.lists : []
   end
   
 end

@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   def home
     @title = "EventBase | Awesomeness"
     @user = User.new
-    @lists = current_user ? current_user.lists : []
   end
   
   def search
@@ -18,23 +17,15 @@ class PagesController < ApplicationController
   
   def dashboard
     @title = 'EventBase | Dashboard'
-    @lists = current_user.lists
     @lists_by_type = @lists.includes(:trackers).order('list_type DESC').by_type(params[:type])
+    @locations = []
     @filters = current_user.filters.includes(:filterable).keep_if { |f| f.filterable.list_type == params[:type] }
-    @locations = Venue.locations
-    if @filters.any?
-      @filtered_events = get_filtered_events(@filters, params[:type])
-    else
-      @events = Event.all
-      @filtered_events = @events
-    end
   end
   
   def autocomplete
     @companies = Company.all_cached.keep_if { |c| c.name.present? && c.name.length > 0 }
     @events = Event.all_cached.keep_if { |e| e.name.present? && e.name.length > 0 }
     @sectors = Sector.all_cached
-    @lists = current_user ? current_user.lists : []
     
     respond_to do |format|
       format.json { render json: { companies: @companies, events: @events, sectors: @sectors, lists: @lists } }
@@ -42,17 +33,26 @@ class PagesController < ApplicationController
     
   end
   
-  private
-  
-    def get_filtered_events(filters, type)
-      if type == "Event"
-        events = filters.map { |f| f.filterable.events }
+  def get_filtered_events
+    @filters = current_user.filters.includes(:filterable).keep_if { |f| f.filterable.list_type == params[:type] }
+    if @filters.any?
+      if params[:type] == "Event"
+        events = @filters.map { |f| f.filterable.events }
       else
-        companies = filters.map { |f| f.filterable.companies }.flatten
+        companies = @filters.map { |f| f.filterable.companies }.flatten
         events = companies.map { |c| c.events }.flatten
       end
-      return events.flatten
+      @filtered_events = events.flatten
+    else
+      @filtered_events = Event.all_cached
     end
-  
-  
+    
+    @filtered_events.keep_if { |e| e.event_start_date && e.event_end_date }
+      
+    respond_to do |format|
+      format.json { render json: @filtered_events.to_json(methods: [:title, :start, :end, :attending_number, :attending ])  }
+    end
+      
+  end
+
 end
