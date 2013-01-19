@@ -18,7 +18,8 @@ class PagesController < ApplicationController
   
   def dashboard
     @title = 'EventBase | Dashboard'
-    @lists = current_user.lists.includes(:trackers).order('list_type DESC').by_type(params[:type])
+    @lists = current_user.lists
+    @lists_by_type = @lists.includes(:trackers).order('list_type DESC').by_type(params[:type])
     @filters = current_user.filters.includes(:filterable).keep_if { |f| f.filterable.list_type == params[:type] }
     @locations = Venue.locations
     if @filters.any?

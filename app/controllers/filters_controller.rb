@@ -43,12 +43,11 @@ class FiltersController < ApplicationController
   # POST /filters
   # POST /filters.json
   def create
-    @filter = Filter.new(params[:filter])
-    @filter.user = current_user
+    @filter = current_user.filters.new(params[:filter])
 
     respond_to do |format|
       if @filter.save
-        format.html { redirect_to :back, notice: 'Filter was successfully created.' }
+        format.html { redirect_to dashboard_url(type: @filter.filterable.list_type), notice: 'Filter was successfully created.' }
         format.json { render json: @filter, status: :created, location: @filter }
       else
         format.html { redirect_to :back, alert: 'Filter not created.' }

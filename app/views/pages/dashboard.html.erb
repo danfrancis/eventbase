@@ -30,7 +30,7 @@
 <script>
 
   var lists = [
-  <% @lists.each do |list| %>
+  <% @lists_by_type.each do |list| %>
     '<%= j(list.name) %>'
     <% if list != @lists.last %>,<% end %>
   <% end %>
