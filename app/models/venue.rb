@@ -10,8 +10,8 @@ class Venue < ActiveRecord::Base
   # multisearchable :against => [:name]
   
   # Geocoding
-  geocoded_by :full_street_address, :latitude  => :lat, :longitude => :long # ActiveRecord
-  after_validation :geocode
+  # geocoded_by :full_street_address, :latitude  => :lat, :longitude => :long # ActiveRecord
+  # after_validation :geocode
   
   def full_street_address
     "#{self.address} #{self.city} #{self.country} #{self.zip_code}"
