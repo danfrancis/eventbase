@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121020160620) do
+ActiveRecord::Schema.define(:version => 20130120162505) do
 
   create_table "attendances", :force => true do |t|
     t.string   "attending_type"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20121020160620) do
     t.string   "long"
     t.string   "fb_perma"
     t.string   "tw_perma"
+    t.integer  "location_id"
   end
 
   create_table "events", :force => true do |t|
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20121020160620) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.string   "perma_name"
+    t.string   "event_series"
   end
 
   create_table "filters", :force => true do |t|
@@ -67,6 +69,14 @@ ActiveRecord::Schema.define(:version => 20121020160620) do
     t.string   "name"
     t.string   "list_type"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "locations", :force => true do |t|
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -131,9 +141,10 @@ ActiveRecord::Schema.define(:version => 20121020160620) do
     t.string   "country"
     t.string   "lat"
     t.string   "long"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "zip_code"
+    t.integer  "location_id"
   end
 
 end

@@ -6,5 +6,20 @@
 <div id="collapseFour" class="accordion-body collapse">
   <div class="accordion-inner">
     <%= render partial: 'filter_search', locals: { filterable_type: 'Location' } %>
+    <% if filters.any? %>
+      <% filters.each do |f| %>
+        <% if f.filterable_type == "Location" %>
+          <p>
+            <span><%= f.title %> (<%= params[:type] == "Company" ? f.filterable.companies.length : f.filterable.events.length %>)</span>
+            <%= link_to 'X', filter_url(f), method: :delete, confirm: 'Are you sure you want to remove this filter?' %>
+          </p>
+        <% end %>
+      <% end %>
+      <p>
+        <%= link_to 'Remove all', remove_all_filters_of_type_url('Location'), confirm: 'Are you sure you want to remove all Location filters?', method: :delete %>
+      </p>
+    <% else %>
+      <p>None selected. Start by typing one in above.</p>
+    <% end %>
   </div>
 </div>

@@ -19,7 +19,7 @@ class Filter < ActiveRecord::Base
   validate :unique_name_for_a_user
   
   def get_filterable_id
-    filterable = self.filterable_type.constantize.find_or_create_by_name(self.title)
+    filterable = self.filterable_type.constantize.find_by_name(self.title)
     self.filterable_id = filterable.id
   end
   

@@ -10,10 +10,13 @@ Filter.destroy_all
 List.destroy_all
 Tag.destroy_all
 Tracker.destroy_all
+Location.destroy_all
 
 CSV.foreach("app/assets/data/venue.csv") do |row|
   #venue_name,venue_street,venue_city,venue_state,venue_zipcode,venue_country
-  Venue.create!(address: row[1], city: row[2], state: row[3], zip_code: row[4], country: row[5], name: row[0])
+  location = Location.find_or_create_by_city(row[2])
+  location.update_attributes(state: row[3], country: row[5]) if location.state.blank? && location.country.blank?
+  location.venues.create!(address: row[1], city: row[2], state: row[3], zip_code: row[4], country: row[5], name: row[0])
 end
 
 CSV.foreach("app/assets/data/event.csv") do |row|
@@ -42,8 +45,8 @@ CSV.foreach("app/assets/data/event.csv") do |row|
     end
   
     event = Event.create!(perma_name: event_perma_name, name: row[1], description: row[2], venue_id: venue.id,
-                          url: row[7], event_start_date: start_date, event_end_date: end_date)
-
+                          url: row[7], event_start_date: start_date, event_end_date: end_date, event_series: row[10])
+    
     sectors.each do |sector|
       sector_record = Sector.find_or_create_by_name(sector.capitalize)
       Tag.create!(sector_id: sector_record.id, taggable_id: event.id, taggable_type: 'Event')
@@ -52,10 +55,27 @@ CSV.foreach("app/assets/data/event.csv") do |row|
 end
 
 CSV.foreach("app/assets/data/companies.csv") do |row|
-  #company_url;company_perma;company_name;company_description;Zipcode;Country;fb_perma;tw_perma
+  #company_url,company_perma,company_name,company_description,zipcode,city,state,country,fb_perma,tw_perma,,sector
+  
+  location = Location.find_or_create_by_city(row[5])
+  location.update_attributes(state: row[6], country: row[7]) if location.state.blank? && location.country.blank?
+  company = location.companies.create!(url: row[0], company_perma: row[1], name: row[2], description: row[3], zipcode: row[4],
+                  fb_perma: row[8], tw_perma: row[9])
+                  
+                  puts company.id
 
-  Company.create!(url: row[0], company_perma: row[1], name: row[2], description: row[3], zipcode: row[4],
-                  country: row[5], fb_perma: row[6], tw_perma: row[7])
+  if row[11].present? && row[11].include?(';')
+    sectors = row[11].split(';')
+  elsif row[11].present?
+    sectors = row[11].split(',')
+  else
+    sectors = ['TBD']
+  end
+  
+  sectors.each do |sector|
+    sector_record = Sector.find_or_create_by_name(sector.capitalize)
+    Tag.create!(sector_id: sector_record.id, taggable_id: company.id, taggable_type: 'Company')
+  end
 
 end
 

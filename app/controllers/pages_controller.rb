@@ -18,8 +18,8 @@ class PagesController < ApplicationController
   def dashboard
     @title = 'EventBase | Dashboard'
     @lists_by_type = @lists.includes(:trackers).order('list_type DESC').by_type(params[:type])
-    @locations = []
-    @filters = current_user.filters.includes(:filterable).keep_if { |f| f.filterable.list_type == params[:type] }
+    @locations = Location.all_cached
+    @filters = current_user.filters.includes(:filterable).keep_if { |f| f.filterable.class.name == 'Location' || f.filterable.list_type == params[:type]  }
   end
   
   def autocomplete
@@ -34,7 +34,7 @@ class PagesController < ApplicationController
   end
   
   def get_filtered_events
-    @filters = current_user.filters.includes(:filterable).keep_if { |f| f.filterable.list_type == params[:type] }
+    @filters = current_user.filters.includes(:filterable).keep_if { |f| f.filterable.class.name == 'Location' || f.filterable.list_type == params[:type]  }
     if @filters.any?
       if params[:type] == "Event"
         events = @filters.map { |f| f.filterable.events }

@@ -47,7 +47,11 @@ class FiltersController < ApplicationController
 
     respond_to do |format|
       if @filter.save
-        format.html { redirect_to dashboard_url(type: @filter.filterable.list_type), notice: 'Filter was successfully created.' }
+        if @filter.filterable.class.name == 'Location'
+          format.html { redirect_to :back, notice: 'Filter was successfully created.' }
+        else
+          format.html { redirect_to dashboard_url(type: @filter.filterable.list_type), notice: 'Filter was successfully created.' }
+        end
         format.json { render json: @filter, status: :created, location: @filter }
       else
         format.html { redirect_to :back, alert: 'Filter not created.' }

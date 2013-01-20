@@ -1,8 +1,9 @@
 class Venue < ActiveRecord::Base
-  attr_accessible :address, :city, :country, :lat, :long, :name, :state, :zip_code
+  attr_accessible :address, :city, :country, :lat, :long, :name, :state, :zip_code, :location_id
   
   #Associations
   has_many :events
+  belongs_to :location
   
   #Search
   # include PgSearch
@@ -32,7 +33,7 @@ class Venue < ActiveRecord::Base
     self.all.map { |v| "#{v.city}"}.uniq
   end
   
-  def location
+  def location_print
     state ? "#{city}, #{state}" : "#{city}, #{country}"
   end
   

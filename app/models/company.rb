@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-  attr_accessible :name, :url, :description, :company_perma, :zipcode, :country, :fb_perma, :tw_perma
+  attr_accessible :name, :url, :description, :company_perma, :zipcode, :country, :fb_perma, :tw_perma, :location_id
   
   #Associations
   has_many :people
@@ -7,6 +7,7 @@ class Company < ActiveRecord::Base
   has_many :sectors, through: :tags
   has_many :tags, as: :taggable
   has_many :attendances, as: :attending
+  belongs_to :location
   
   #Search
   # include PgSearch

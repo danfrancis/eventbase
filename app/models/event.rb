@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-  attr_accessible :perma_name, :description, :event_end_date, :event_start_date, :name, :organizer, :price, :reg_end_date, :reg_start_date, :reg_url, :url, :venue_id
+  attr_accessible :perma_name, :description, :event_end_date, :event_start_date, :name, :organizer, :price,
+                  :reg_end_date, :reg_start_date, :reg_url, :url, :venue_id, :event_series
   
   #Associations
   belongs_to :venue
