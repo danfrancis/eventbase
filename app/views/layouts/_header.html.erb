@@ -90,6 +90,10 @@
 
   $(function(){
     
+    $('#search_form').submit(function(){
+      return false;
+    });
+    
     $.widget( "custom.catcomplete", $.ui.autocomplete, {
         _renderMenu: function( ul, items ) {
             var that = this,
