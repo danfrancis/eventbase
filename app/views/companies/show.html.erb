@@ -33,7 +33,7 @@
       <td><%= link_to event.name, event %></td>
       <td><%= event.event_start_date.strftime('%D') %></td>
       <td><%= event.event_end_date.strftime('%D') %></td>
-      <td><%= event.venue.location %></td>
+      <td><%= event.venue.location.name %></td>
       <td><%= @company.attendances.select { |a| a.event_id == event.id }.first.role %></td>
       <td><%= render partial: 'trackers/form', locals: { :tracking_item => event, :lists => @lists_event } %></td>
     </tr>
