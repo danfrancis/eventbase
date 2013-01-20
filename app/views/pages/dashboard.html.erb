@@ -67,10 +67,10 @@
                 type: '<%= params[:type] %>'
             },
             success: function(data) {
-              console.log(data);
               $('#calendar_loading').slideUp();
               var start_date = data[0]['start'].split('-');
               $('#calendar').fullCalendar('gotoDate', start_date[0], parseInt(start_date[1]) - 1, start_date[2]);
+              autocomplete();
             },
             error: function() {
               alert('There was an error while fetching events!');

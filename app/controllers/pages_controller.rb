@@ -39,7 +39,7 @@ class PagesController < ApplicationController
       if params[:type] == "Event"
         events = @filters.map { |f| f.filterable.events }
       else
-        companies = @filters.map { |f| f.filterable.companies }.flatten
+        companies = @filters.map { |f| f.filterable.companies.includes(:events) }.flatten
         events = companies.map { |c| c.events }.flatten
       end
       @filtered_events = events.flatten
