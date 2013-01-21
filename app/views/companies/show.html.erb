@@ -1,45 +1,49 @@
-<p id="notice"><%= notice %></p>
-<h1>
-  <%= @company.name %>
-  <span class="pull-right"><%= render partial: 'trackers/form', locals: { :tracking_item => @company, lists: @lists_company } %></span>
-</h1>
-<p>
-  <b>Homepage: </b><%= link_to "http://#{@company.url}", "http://#{@company.url}" %>
-</p>
-<p>
-  <b>Events Page: </b>
-</p>
-<p>
-  <b>Description: </b>
-</p>
-<p>
-  <b>Categories: </b>
-</p>
-<h3>Events</h3>
-<table id="attending_table" class="table table-striped">
-  <thead>
-    <tr>
-      <th>Event Name</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Location</th>
-      <th>Role</th>
-      <th>Add to...</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @company.events.each do |event| %>
-    <tr>
-      <td><%= link_to event.name, event %></td>
-      <td><%= event.event_start_date.strftime('%D') %></td>
-      <td><%= event.event_end_date.strftime('%D') %></td>
-      <td><%= event.venue.location.name %></td>
-      <td><%= @company.attendances.select { |a| a.event_id == event.id }.first.role %></td>
-      <td><%= render partial: 'trackers/form', locals: { :tracking_item => event, :lists => @lists_event } %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<div id="content" class="span11">
+  <div class="row-fluid sortable ui-sortable">		
+		<div class="box span12">
+			<div class="box-header" data-original-title="">
+				<h2><i class="halflings-icon briefcase"></i><span class="break"></span>Company</h2>
+			</div>
+  		<div class="box-content" style="display: block;">
+  		  <h1>
+          <%= @company.name %>
+          <span class="pull-right"><%= render partial: 'trackers/form', locals: { :tracking_item => @company, lists: @lists_company } %></span>
+        </h1>
+        <p><b>Homepage: </b><%= link_to "http://#{@company.url}", "http://#{@company.url}" %></p>
+        <p><b>Events Page: </b></p>
+        <p><b>Description: </b><%= @company.description %></p>
+        <p><b>Categories: </b><%= print_list(@company.sector_names) %></p>
+        <h3>Events</h3>
+  			<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
+		      <table id="attending_table" class="table table-striped table-bordered bootstrap-datatable datatable dataTable">
+            <thead>
+              <tr>
+                <th>Event Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Location</th>
+                <th>Role</th>
+                <th>Add to...</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @company.events.each do |event| %>
+              <tr>
+                <td><%= link_to event.name, event %></td>
+                <td><%= event.event_start_date.strftime('%D') %></td>
+                <td><%= event.event_end_date.strftime('%D') %></td>
+                <td><%= event.venue.location.name %></td>
+                <td><%= @company.attendances.select { |a| a.event_id == event.id }.first.role %></td>
+                <td><%= render partial: 'trackers/form', locals: { :tracking_item => event, :lists => @lists_event } %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+		    </div>
+  		</div><!--/span-->
+		</div>
+  </div>
+</div>
 
 <script>
 

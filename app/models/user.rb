@@ -38,5 +38,10 @@ class User < ActiveRecord::Base
   def companies_tracking
     self.companies
   end
+  
+  def name
+    
+    "#{first_name ? first_name.slice(0) : nil}. #{last_name}"    
+  end
 
 end

@@ -1,35 +1,45 @@
-<div class="dashboard">
-  <div class="accordion span3" id="accordion2">
-    <h3 id="filtering">Filter by ...</h3>
-    <div class="accordion-group">
-      <%= render partial: 'lists', locals: { filters: @filters } %>
-    </div>
-    <div class="accordion-group">
-      <%= render partial: 'locations', locals: { filters: @filters } %>
-    </div>
-    <%= link_to 'Reset my filters', remove_all_filters_url, confirm: 'Are you sure you want to clear all your filters?', method: :delete %>
-  </div>
-  <div class="dashboard-results span8">
-    <div id="calendar_loading" class="well">
-      <h3>Compiling your events...</h3>
-      <div class="progress progress-striped active">
-        <div class="bar" style="width: 100%;"></div>
+<div id="content" class="span11">
+  <div class="row-fluid sortable ui-sortable">
+    <div id="content" class="span11" style="min-height: 447px;">
+      <div class="box-header" data-original-title="">
+      					  <h2><i class="halflings-icon calendar"></i><span class="break"></span>Calendar</h2>
+      				  </div>
+		<div class="box span12">
+		  <div class="dashboard">
+        <div class="accordion span3" id="accordion2">
+          <h3 id="filtering">Filter by ...</h3>
+          <div class="accordion-group">
+            <%= render partial: 'lists', locals: { filters: @filters } %>
+          </div>
+          <div class="accordion-group">
+            <%= render partial: 'locations', locals: { filters: @filters } %>
+          </div>
+          <%= link_to 'Reset my filters', remove_all_filters_url, confirm: 'Are you sure you want to clear all your filters?', method: :delete %>
+        </div>
+        <div class="dashboard-results span8">
+          <div id="calendar_loading" class="well">
+            <h3>Compiling your events...</h3>
+            <div class="progress progress-striped active">
+              <div class="bar" style="width: 100%;"></div>
+            </div>
+          </div>
+          <div id="calendar"></div>
+          <% if params[:type] == 'Company' %>
+            <!-- <table>
+              <tr>
+                <td class="attending_companies fc-widget-content">Total Companies</td>
+                <td class="attending_companies fc-widget-content">Total Companies</td>
+                <td class="attending_companies fc-widget-content">Total Companies</td>
+                <td class="attending_companies fc-widget-content">Total Companies</td>
+                <td class="attending_companies fc-widget-content">Total Companies</td>
+                <td class="attending_companies fc-widget-content">Total Companies</td>
+                <td style="width: 88px;" class="attending_companies fc-widget-content">Total Companies</td>
+              </tr>
+            </table> -->
+          <% end %>
+        </div>
       </div>
-    </div>
-    <div id="calendar"></div>
-    <% if params[:type] == 'Company' %>
-      <!-- <table>
-        <tr>
-          <td class="attending_companies fc-widget-content">Total Companies</td>
-          <td class="attending_companies fc-widget-content">Total Companies</td>
-          <td class="attending_companies fc-widget-content">Total Companies</td>
-          <td class="attending_companies fc-widget-content">Total Companies</td>
-          <td class="attending_companies fc-widget-content">Total Companies</td>
-          <td class="attending_companies fc-widget-content">Total Companies</td>
-          <td style="width: 88px;" class="attending_companies fc-widget-content">Total Companies</td>
-        </tr>
-      </table> -->
-    <% end %>
+		</div>
   </div>
 </div>
 
@@ -50,58 +60,6 @@
   ];
     
   var arr = [];
-  
-  $('#calendar').fullCalendar({
-      // your options here
-      header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,basicWeek'
-			},
-      defaultView: 'basicWeek',
-      eventSources: [
-        {
-            url: '/get_filtered_events',
-            type: 'GET',
-            data: {
-                type: '<%= params[:type] %>'
-            },
-            success: function(data) {
-              $('#calendar_loading').slideUp();
-              var start_date = data[0]['start'].split('-');
-              $('#calendar').fullCalendar('gotoDate', start_date[0], parseInt(start_date[1]) - 1, start_date[2]);
-              autocomplete();
-            },
-            error: function() {
-              alert('There was an error while fetching events!');
-            }
-            //,
-            // color: 'blue',   // a non-ajax option
-            // textColor: 'white' // a non-ajax option
-        }
-      ],
-      eventClick: function(calEvent, jsEvent, view) {
-        window.location.replace('<%= root_url %>events/'+calEvent.id);
-      },
-      // dayClick: function(date, allDay, jsEvent, view){
-      //   $('#calendar').fullCalendar('changeView', 'basicDay');
-      //   $('#calendar').fullCalendar('gotoDate', date);
-      // },
-      eventMouseover: function(event, jsEvent, view) { 
-        var el = jsEvent['srcElement'];
-        var html = '<p>Title: '+ event["title"] + '</p><p>Start: ' + event["start"]+ '</p><p>End: '+event["end"]+'</p>';
-        <% if params[:type] == 'Company' %>
-          html += '<p>Attending (' + event["attending_number"] + '):</p><ul><li>' + event["attending"] + '</li></ul>';
-        <% end %>
-        $(el).popover({content: html, placement: 'bottom'});
-        $(el).popover('show');
-      },
-      eventMouseout: function(event, jsEvent, view) { 
-        var el = jsEvent['srcElement'];
-      },
-      limitEvents: 5
-  });
-  
   
   // var Filter = {
   //   init: function(){
@@ -134,6 +92,58 @@
     
     $("#lists").typeahead({ source: lists });
     $("#locations").typeahead({ source: locations });
+    
+    $('#calendar').fullCalendar({
+        // your options here
+        header: {
+  				left: 'prev,next today',
+  				center: 'title',
+  				right: 'month,basicWeek'
+  			},
+        defaultView: 'basicWeek',
+        eventSources: [
+          {
+              url: '/get_filtered_events',
+              type: 'GET',
+              data: {
+                  type: '<%= params[:type] %>'
+              },
+              success: function(data) {
+                $('#calendar_loading').slideUp();
+                var start_date = data[0]['start'].split('-');
+                $('#calendar').fullCalendar('gotoDate', start_date[0], parseInt(start_date[1]) - 1, start_date[2]);
+                autocomplete();
+              },
+              error: function() {
+                alert('There was an error while fetching events!');
+              }
+              //,
+              // color: 'blue',   // a non-ajax option
+              // textColor: 'white' // a non-ajax option
+          }
+        ],
+        eventClick: function(calEvent, jsEvent, view) {
+          window.location.replace('<%= root_url %>events/'+calEvent.id);
+          return false;
+        },
+        // dayClick: function(date, allDay, jsEvent, view){
+        //   $('#calendar').fullCalendar('changeView', 'basicDay');
+        //   $('#calendar').fullCalendar('gotoDate', date);
+        // },
+        eventMouseover: function(event, jsEvent, view) { 
+          var el = jsEvent['srcElement'];
+          var html = '<p>Title: '+ event["title"] + '</p><p>Start: ' + event["start"]+ '</p><p>End: '+event["end"]+'</p>';
+          <% if params[:type] == 'Company' %>
+            html += '<p>Attending (' + event["attending_number"] + '):</p><ul><li>' + event["attending"] + '</li></ul>';
+          <% end %>
+          $(el).popover({content: html, placement: 'bottom'});
+          $(el).popover('show');
+        },
+        eventMouseout: function(event, jsEvent, view) { 
+          var el = jsEvent['srcElement'];
+        },
+        limitEvents: 5
+    });
     
 
     $('.category_filter').click(function(){

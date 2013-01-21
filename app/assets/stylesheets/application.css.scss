@@ -1,7 +1,22 @@
-@import "bootstrap";
+/*@import "bootstrap";
 @import "home";
 @import "dashboard";
 @import "fullcalendar";
 @import "lists";
 @import "jquery.ui.all";
 @import "events";
+@import "select2";*/
+@import "css/*";
+@import 'font-awesome';
+
+
+#content {
+	min-height: 669px;
+}
+
+.ui-autocomplete-category {
+    font-weight: bold;
+    padding: .2em .4em;
+    margin: .8em 0 .2em;
+    line-height: 1.5;
+}

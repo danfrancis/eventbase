@@ -55,6 +55,9 @@ GEM
     excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    font-awesome-sass-rails (2.0.0.0)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     geocoder (1.1.6)
     gmaps4rails (1.5.6)
     heroku (2.34.0)
@@ -153,6 +156,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   dalli
   exception_notification (= 2.6.1)
+  font-awesome-sass-rails
   geocoder
   gmaps4rails
   heroku

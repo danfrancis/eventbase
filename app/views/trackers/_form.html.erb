@@ -8,20 +8,23 @@
     <% end %>
     </p>
   <% else %>
-    <%= form_tag(trackers_url, class: 'form-horizontal', method: :post) do %>
-      <div class="btn-group">
-        <a id="sign_in" class="btn dropdown-toggle span2" data-toggle="dropdown" href="#">
-          Add to my lists
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu trackers_list">
-          <% lists.each do |list| %>
-            <li><label for="list"><%= check_box_tag "tracker[list_id][]", list.id, current_user.tracking?(tracking_item) %> <%= link_to list.name, list_url(list) %></label></li>
-          <% end %>
-          <li><%= text_field_tag :new_list, nil, class: 'span2', placeholder: 'New name...' %></li>
-          <li><%= submit_tag 'Add', class: 'btn-success' %></li>
+    <%= form_tag(trackers_url, class: 'form-horizontal', method: :post) do %>        
+        <ul class="nav">
+          <li class="dropdown">
+            <a id="sign_in" class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              Add to my lists
+              <span class="caret"></span>
+            </a>
+      			<ul class="dropdown-menu trackers_list">
+              <% lists.each do |list| %>
+                <li><%= check_box_tag "tracker[list_id][]", list.id, current_user.tracking?(tracking_item) %><%= link_to list.name, list_url(list) %></li>
+              <% end %>
+              <li><%= text_field_tag :new_list, nil, class: 'span10', placeholder: 'New name...' %></li>
+              <li><%= submit_tag 'Add', class: 'btn-success' %></li>
+            </ul>
+      		</li>
         </ul>
-      </div>
+
       <%#= select_tag :list_id, options_from_collection_for_select(lists, :id, :name), prompt: 'Add to my lists' %>
       <%= hidden_field_tag :tracking_id, tracking_item.id %>
       <%= hidden_field_tag :tracking_type, tracking_item.class.name %>

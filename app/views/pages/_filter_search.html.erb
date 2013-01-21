@@ -1,5 +1,5 @@
 <%= form_for(Filter.new, html: { class: 'form-inline' }) do |f| %>
-  <%= f.text_field :title, placeholder: 'Enter name', class: 'span2', id: filterable_type.downcase.pluralize, autocomplete: 'off' %>
+  <%= f.text_field :title, placeholder: 'Enter name', class: 'span10', id: filterable_type.downcase.pluralize, autocomplete: 'off' %>
   <%= f.hidden_field :filterable_type, value: filterable_type %>
   <%= f.submit '+' %>
 <% end %>

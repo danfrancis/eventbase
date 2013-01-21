@@ -1,58 +1,67 @@
-<p id="notice"><%= notice %></p>
-
-<h2>
-  <%= best_in_place @list, :name, :type => :input, activator: '#list_rename' %>
-  <%= link_to 'Rename', '', class: 'btn btn-primary', id: 'list_rename' %>
-  <%= link_to 'Delete', list_path(@list), method: :delete, class: 'btn btn-danger', confirm: 'Are you sure you want to delete this list?' %>
-  <%= form_for(Filter.new, html: { style: 'display: inline' }) do |f| %>
-    <%= f.hidden_field :title, value: @list.name %>
-    <%= f.hidden_field :filterable_type, value: @list.class.name %>
-    <%= f.submit 'View in Calendar', class: 'btn btn-success' %>
-  <% end %>
-</h2>
-
-<p><%= @list.list_type %> List</p>
-
-<table id="list_table" class="table table-striped">
-  <thead>
-    <tr>
-      <% if @list.list_type == 'Event' %>
-        <th>Event Name</th>
-        <th>Category</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>City/State</th>
-        <th>Country</th>
-        <th>Sponsors/Exhibitors</th>
-        <th></th>
-      <% else %>
-        <th>Company Name</th>
-        <th>Category</th>
-        <th></th>
-      <% end %>
-    </tr>
-  </thead>
-  <% if @list.trackers.any? %>
-    <tbody>
-    <% @list.trackers.each do |tracker| %>
-      <tr>
-          <td><%= link_to tracker.tracking.name, tracker.tracking %></td>
-          <td><%= print_list(tracker.tracking.sector_names) %></td>
-          <% if @list.list_type == 'Event' %>
-            <td><%= tracker.tracking.event_start_date.strftime('%D') %></td>
-            <td><%= tracker.tracking.event_end_date.strftime('%D') %></td>
-            <td><%= tracker.tracking.city_and_state %></td>
-            <td><%= tracker.tracking.country %></td>
-            <td><%= tracker.tracking.attendances.length %></td>
+<div id="content" class="span11">
+  <div class="row-fluid sortable ui-sortable">		
+		<div class="box span12">
+			<div class="box-header" data-original-title="">
+				<h2><i class="halflings-icon tasks"></i><span class="break"></span>List</h2>
+			</div>
+  		<div class="box-content" style="display: block;">
+  		  <h2>
+          <%= best_in_place @list, :name, :type => :input, activator: '#list_rename' %>
+          <%= link_to 'Rename', '', class: 'btn btn-primary', id: 'list_rename' %>
+          <%= link_to 'Delete', list_path(@list), method: :delete, class: 'btn btn-danger', confirm: 'Are you sure you want to delete this list?' %>
+          <%= form_for(Filter.new, html: { style: 'display: inline' }) do |f| %>
+            <%= f.hidden_field :title, value: @list.name %>
+            <%= f.hidden_field :filterable_type, value: @list.class.name %>
+            <%= f.submit 'View in Calendar', class: 'btn btn-success' %>
           <% end %>
-          <td><%= link_to 'Remove', tracker_url(tracker), method: :delete %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  <% else %>
-    <tr><td>No events found. Please try another filter.</td></tr>
-  <% end %>
-</table>
+        </h2>
+        <p><%= @list.list_type %> List</p>
+  			<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
+            <table id="list_table" class="table table-striped table-bordered bootstrap-datatable datatable dataTable">
+              <thead>
+                <tr>
+                  <% if @list.list_type == 'Event' %>
+                    <th>Event Name</th>
+                    <th>Category</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>City/State</th>
+                    <th>Country</th>
+                    <th>Sponsors/Exhibitors</th>
+                    <th></th>
+                  <% else %>
+                    <th>Company Name</th>
+                    <th>Category</th>
+                    <th></th>
+                  <% end %>
+                </tr>
+              </thead>
+              <% if @list.trackers.any? %>
+                <tbody>
+                <% @list.trackers.each do |tracker| %>
+                  <tr>
+                      <td><%= link_to tracker.tracking.name, tracker.tracking %></td>
+                      <td><%= print_list(tracker.tracking.sector_names) %></td>
+                      <% if @list.list_type == 'Event' %>
+                        <td><%= tracker.tracking.event_start_date.strftime('%D') %></td>
+                        <td><%= tracker.tracking.event_end_date.strftime('%D') %></td>
+                        <td><%= tracker.tracking.city_and_state %></td>
+                        <td><%= tracker.tracking.country %></td>
+                        <td><%= tracker.tracking.attendances.length %></td>
+                      <% end %>
+                      <td><%= link_to 'Remove', tracker_url(tracker), method: :delete %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              <% else %>
+                <tr><td>No events found. Please try another filter.</td></tr>
+              <% end %>
+            </table>
+		    </div>
+  		</div><!--/span-->
+		</div>
+  </div>
+</div>
 
 <script>
 
