@@ -4,7 +4,7 @@ html .halflings {
 }
 @font-face {
   font-family: 'Glyphicons';
-  src: url('../font/glyphicons-regular.eot');
+  src: url('<%= asset_path("glyphicons-regular.eot") %>');
   src: url('../font/glyphicons-regular-0.eot#iefix') format('embedded-opentype'), url('../font/glyphicons-regular.woff') format('woff'), url('../font/glyphicons-regular.ttf') format('truetype'), url('../font/glyphicons-regular.svg#glyphicons_halflingsregular') format('svg');
   font-weight: normal;
   font-style: normal;

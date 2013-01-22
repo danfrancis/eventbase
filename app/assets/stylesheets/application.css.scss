@@ -4,11 +4,11 @@
 @import "fullcalendar";
 @import "lists";
 @import "jquery.ui.all";
-@import "events";
 @import "select2";*/
-@import "css/*";
-@import 'font-awesome';
-
+@import 'bootstrap-responsive';
+@import 'bootstrap';
+@import 'style';
+@import 'style-responsive';
 
 #content {
 	min-height: 669px;
