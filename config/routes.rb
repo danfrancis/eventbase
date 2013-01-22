@@ -22,7 +22,7 @@ EventBase::Application.routes.draw do
   get '/dashboard' => 'pages#dashboard', as: :dashboard
   
   post '/sessions' => 'sessions#create', as: :sessions
-  get '/sessions' => 'sessions#destroy'
+  delete '/sessions' => 'sessions#destroy'
   
   post '/trackers' => 'trackers#create', as: :trackers
   delete '/trackers/:id' => 'trackers#destroy', as: :tracker
